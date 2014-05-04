@@ -1,0 +1,17 @@
+---
+layout: default
+title: Vorple documentation
+desc: Vorple documentation
+---
+
+<article id="inform7" class="documentation">
+    {% capture i7doc %}{% include doc/inform7.markdown %}{% endcapture %}
+    {{ i7doc | markdownify }}
+</article>
+
+<article id="undum" class="documentation">
+    {% capture undumdoc %}{% include doc/undum.markdown %}{% endcapture %}
+    {{ undumdoc | markdownify }}
+</article>
+
+{% include doc/footer.html %}
