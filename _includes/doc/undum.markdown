@@ -92,7 +92,7 @@ and `SimpleSituation`.
 
 Here's how the rest of this manual is structured:
 
-* [Getting started](#getting-started) instructs on how to install and set up
+* [Getting started](#getting-started-undum) instructs on how to install and set up
 the system.
 * [Developing with Vorple](#developing-with-vorple) tells how to actually use
 the system and discusses some of the caveats.
@@ -205,7 +205,7 @@ the same method with normal text as well.
 
 
 ## Getting started
-{: id="getting-started"}
+{: #getting-started-undum}
 
 ### Starting a new project
 {: #new-project}
