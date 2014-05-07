@@ -135,6 +135,7 @@ table.definitions code {
 
 .note {
     border:1px solid #eed;
+    font-style:italic;
     padding:0.5em 1em;
     -webkit-box-shadow: 1px 1px 1px 1px #ccc;
     box-shadow: 1px 1px 1px 1px #ccc;

@@ -33,7 +33,7 @@ At the moment only Z-machine is supported. Glulx support is on the works.
 First of all, you need Inform 7 which can be downloaded from its web site at
 [inform7.com](http://inform7.com). We're assuming you know the
 basics, but if not, a good place to start is the included manual or
-[other available documentation](http://www.intfiction.org/forum/viewtopic.php?f=7&t=3988)
+[other available documentation](http://www.intfiction.org/forum/viewtopic.php?f=7&t=3988).
 
 (If hypertext fiction is more your thing, Vorple is available for
 [Undum](http://undum.com) as well.)
@@ -41,8 +41,21 @@ basics, but if not, a good place to start is the included manual or
 In addition to Inform 7 we need the custom Vorple interpreter and the
 Vorple extensions. Luckily the latest Inform 7 release already comes with
 the interpreter built-in, and installing the extensions is easy from the new
-Public Library. See the Inform documentation for instructions on how to download
-and install extensions.
+Public Library.
+
+Open the Extensions pane and click on the Public Library tab.
+The Vorple extensions are under subheading §12.5.
+
+![Downloading Vorple extensions from the Public Library]({{site.url}}/media/image/doc/public-library-download.png)
+
+Download and install the extensions by clicking on the "download" buttons.
+
+<div class="note">
+The Public Library is at the moment available only in the OS X IDE. Windows
+and Unix users have to download and install the extensions separately from the
+<a href="/downloads">downloads page</a>. The Inform 7 manual has instructions
+on how to install them.
+</div>
 
 The extension "Vorple by Juhana Leinonen" contains the basic definitions that
 are needed for the system to work. It's required by all other extensions, so
@@ -99,6 +112,8 @@ Click on the "browse play-in-browser page" button to open the web interpreter.
 
 If everything went as planned, we should now see the story start and our welcome
 message pop up in the lower right corner of the web page.
+
+![Interpreter view with the notification]({{site.url}}/media/image/doc/notification-example.png)
 
 From now on instead of going this long route we can just push the release
 button, switch to the browser and reload the page.
