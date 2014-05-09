@@ -237,6 +237,26 @@ footer {
     margin: 1em 0;
 }
 
+
+/* I7 examples */
+
+#exampleList h3, h4 {
+    margin-top:2em;
+}
+
+.dl_links {
+    margin:0.8em 0;
+}
+
+.dl_links button {
+    margin-left:1em;
+}
+
+.testme {
+    font-size:75%;
+}
+
+
 /* tabs */
 
 #systemtabs {

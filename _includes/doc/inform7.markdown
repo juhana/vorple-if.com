@@ -53,7 +53,7 @@ Download and install the extensions by clicking on the "download" buttons.
 <div class="note">
 The Public Library is at the moment available only in the OS X IDE. Windows
 and Unix users have to download and install the extensions separately from the
-<a href="/downloads">downloads page</a>. The Inform 7 manual has instructions
+<a href="/download">downloads page</a>. The Inform 7 manual has instructions
 on how to install them.
 </div>
 
