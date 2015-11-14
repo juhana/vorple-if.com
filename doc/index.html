@@ -3,15 +3,33 @@ layout: default
 title: Vorple documentation
 desc: Vorple documentation
 ---
+<article id="undum" class="documentation">
+    {% capture undumdoc %}{% include doc/undum.markdown %}{% endcapture %}
+    {{ undumdoc | markdownify }}
+</article>
+
+<article id="inform6" class="documentation">
+    {% capture i6doc %}{% include doc/inform6.markdown %}{% include doc/inform6-functions.markdown %}{% endcapture %}
+    {{ i6doc | markdownify }}
+</article>
 
 <article id="inform7" class="documentation">
     {% capture i7doc %}{% include doc/inform7.markdown %}{% endcapture %}
     {{ i7doc | markdownify }}
 </article>
 
-<article id="undum" class="documentation">
-    {% capture undumdoc %}{% include doc/undum.markdown %}{% endcapture %}
-    {{ undumdoc | markdownify }}
-</article>
+<script src="../js/toc.min.js"></script>
+<script>
+    $.each([ '#undum', '#inform6', '#inform7' ], function( i, system ) {
+        $( '<div>' )
+            .addClass( 'toc' )
+            .toc({
+                container: system,
+                selectors: 'h2,h3,h4,h5'
+            })
+            .insertAfter( $( system ).find( 'h1' ) )
+            .prepend( '<h2>Table of contents</h2>' );
+    });
+</script>
 
 {% include doc/footer.html %}

@@ -1,6 +1,11 @@
 jQuery( function( $ ) {
     var chosenTab;
 
+        // the containers must be cached because of hash change scroll disabling later
+    var $undumId = $( '#undum' ),
+        $inform6Id = $( '#inform6' ),
+        $inform7Id = $( '#inform7' );
+
     var saveChosenTab = function() {
         if( window.localStorage ) {
             localStorage.setItem( 'tab', chosenTab );
@@ -12,22 +17,40 @@ jQuery( function( $ ) {
             $.fx.off = true;
         }
 
-        var $undumContent = $( '#undum, .undumContent' ),
-            $informContent = $( '#inform7, .informContent' ),
+        var $undumContent = $( '.undumContent' ).add( $undumId ),
+            $i6Content = $( '.i6Content' ).add( $inform6Id ),
+            $i7Content = $( '.i7Content' ).add( $inform7Id ),
+            $informContent = $( '.informContent' ),     // content common for I6 & I7
             $undumTab = $( '#undumTab' ),
-            $informTab = $( '#inform7Tab' );
+            $i6Tab = $( '#inform6Tab' ),
+            $i7Tab = $( '#inform7Tab' );
 
-        if( chosenTab == 'inform7' ) {
-            $undumContent.slideUp();
-            $informContent.slideDown();
-            $undumTab.removeClass( 'active' );
-            $informTab.addClass( 'active' );
-        }
-        else {
-            $undumContent.slideDown();
-            $informContent.slideUp();
-            $undumTab.addClass( 'active' );
-            $informTab.removeClass( 'active' );
+        $( '.tab' ).removeClass( 'active' );
+
+        switch( chosenTab ) {
+            case 'inform6':
+                $undumContent.slideUp();
+                $i7Content.slideUp();
+                $i6Content.slideDown();
+                $informContent.slideDown();
+                $i6Tab.addClass( 'active' );
+                break;
+
+            case 'inform7':
+                $undumContent.slideUp();
+                $i6Content.slideUp();
+                $i7Content.slideDown();
+                $informContent.slideDown();
+                $i7Tab.addClass( 'active' );
+                break;
+
+            case 'undum':
+                $undumContent.slideDown();
+                $i6Content.slideUp();
+                $i7Content.slideUp();
+                $informContent.slideUp();
+                $undumTab.addClass( 'active' );
+                break;
         }
 
         $.fx.off = false;
@@ -36,13 +59,13 @@ jQuery( function( $ ) {
     };
 
     if( window.location.hash ) {
-        if( window.location.hash.toLowerCase() === '#undum' || window.location.hash.toLowerCase() === '#inform7' ) {
+        if( window.location.hash.toLowerCase() === '#undum' || window.location.hash.toLowerCase() === '#inform6' || window.location.hash.toLowerCase() === '#inform7' ) {
             chosenTab = window.location.hash.toLowerCase().substr( 1 );
         }
         else {
             // switch to correct tab if the anchor is inside
             // their content
-            var $parent = $( window.location.hash ).closest( '#undum, #inform7' );
+            var $parent = $( window.location.hash ).closest( '#undum, #inform6, #inform7' );
 
             if( $parent.length > 0 ) {
                 chosenTab = $parent.attr( 'id' );
@@ -55,7 +78,7 @@ jQuery( function( $ ) {
     }
 
     // default to I7
-    if( chosenTab !== 'inform7' && chosenTab !== 'undum' ) {
+    if( chosenTab.indexOf( 'inform' ) === -1 && chosenTab !== 'undum' ) {
         chosenTab = 'inform7';
     }
 
@@ -63,8 +86,14 @@ jQuery( function( $ ) {
     chooseTab( false );
 
     $( '.tab a' ).on( 'click', function( e ) {
+        var hash = $( this ).attr( 'href' );
+
         e.preventDefault();
-        window.location.hash = $( this ).attr( 'href' );
+
+        // disabling the browser's scroll-to-hash functionality
+        $( hash ).attr( 'id', '' );
+        window.location.hash = hash;
+        $( hash ).attr( 'id', hash.substr( 1 ) );
     });
 
     // set page status on hash change
@@ -72,6 +101,9 @@ jQuery( function( $ ) {
         switch( window.location.hash.toLowerCase() ) {
             case '#undum':
                 chosenTab = 'undum';
+                break;
+            case '#inform6':
+                chosenTab = 'inform6';
                 break;
             case '#inform7':
                 chosenTab = 'inform7';
