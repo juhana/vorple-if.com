@@ -1,12 +1,16 @@
 @import url(http://fonts.googleapis.com/css?family=Calligraffitti);
 @import url(http://fonts.googleapis.com/css?family=Merriweather:300,300italic,700,700italic);
 
-html body {
+html, body {
     background-color:#ccc;
     background-image: url( 'image/bg.png' );
     background-repeat: repeat;
     background-attachment: fixed;
     font-family: 'Merriweather', serif;
+}
+
+body {
+    padding:0 120px;
 }
 
 p, li, div.note {
@@ -47,7 +51,7 @@ h2 {
 }
 
 #page {
-    max-width:740px;
+    max-width:940px;
     margin:0 auto 25px auto;
     border:1px solid black;
     background-color:white;
@@ -76,7 +80,6 @@ header {
 
 #content, article#content {
     position:relative;
-    max-width:680px;
     min-height:200px;
     padding:5px 30px 20px 30px;
     background-color:white;
@@ -90,14 +93,18 @@ header {
 
 #mainmenu {
     height:40px;
-    width:700px;
-    margin:-35px auto 10px auto;
+    margin:-19px auto 10px auto;
     line-height:1em;
+    list-style:none;
+    display:block;
 }
 
-#mainmenu ul li {
+#mainmenu li {
+    display:block;
+    overflow:hidden;
     float:left;
     margin-right:10px;
+    padding-top:5px;
     list-style:none;
     background-color:white;
     border:1px solid #ccc;
@@ -107,8 +114,7 @@ header {
     border-radius: 0 0 5px 5px;
 }
 
-#mainmenu ul li a {
-    display:inline-block;
+#mainmenu li a {
     padding:6px 10px 3px 10px;
     font-family: 'Calligraffitti', cursive;
     font-size:17px;
@@ -116,27 +122,37 @@ header {
 }
 
 #mainmenu .active {
+    background-color:transparent;
+}
+
+#mainmenu .active a {
     background-color:#ddd;
 }
 
-#mainmenu ul li a:hover {
+#mainmenu li:not(.active) a:hover {
     background-color:#f0f0f0;
 }
 
+#mainmenu:after, #systemtabs:before {
+    content:"";
+    display:table;
+    clear:both;
+}
+
 #announcementContainer {
-    width:500px;
+    float:left;
+    max-width:500px;
     background:#fff url(../media/image/rabbit.png) no-repeat top right;
     min-height:250px;
     border:1px solid gray;
     margin-top:40px;
-    margin-left:100px;
+    margin-left:20px;
 }
 
 #announcement {
-    width:300px;
+    max-width:300px;
     padding-right:200px;
-    margin-left:20px;
-    margin-top:30px;
+    margin:30px 0 10px 20px;
 }
 
 #announcement li {
@@ -154,19 +170,10 @@ header {
     margin:30px 0;
 }
 
-#blogteaser {
-    float:left;
-    width:400px;
-    margin:40px 0 30px 0;
-}
-
-#readmore {
-    display:block;
-}
-
 #twitterfeed {
-    float:right;
+    float:left;
     margin-top:40px;
+    margin-left:20px;
     width:250px;
 }
 
@@ -257,48 +264,39 @@ footer {
 }
 
 
-/* tabs */
+/* Tabs */
 
 #systemtabs {
     position:absolute;
     white-space:nowrap;
     text-align:left;
-    left:740px;
+    right:-100px;
     top:173px;
+    list-style:none;
 }
 
 #systemtabs a {
     color:#777;
     display:block;
-    font-family: 'Calligraffitti', cursive;
-    font-size: 22px;
-    padding:5px 10px 5px 20px;
-    margin:5px 0 0 0;
-    border:1px solid gray;
-    border-left:0;
+    font-family:'Calligraffitti', cursive;
+    font-size:22px;
 
-    -webkit-transition: color 0.5s;
-    transition: color 0.5s;
+    -webkit-transition:color 0.5s;
+    transition:color 0.5s;
 }
 
 #systemtabs .tab.active a {
     color:#611;
 }
 
-#systemtabs .tab.active,
-#systemtabs #undumTab.active {
-    -moz-transform:rotate(0deg);
-    -webkit-transform:rotate(0deg);
-    -o-transform:rotate(0deg);
-    -ms-transform:rotate(0deg);
-    transform:rotate(0deg);
-
-    opacity:1;
-}
-
 #systemtabs .tab {
+    display:block;
     background-color:#fff;
-    margin:15px 0 0 -10px;
+    margin:20px 0 0 -10px;
+    padding:12px 10px 10px 20px;
+    border:1px solid gray;
+    border-left:0;
+
     -moz-transform:rotate(10deg);
     -webkit-transform:rotate(10deg);
     -o-transform:rotate(10deg);
@@ -309,6 +307,16 @@ footer {
 
     -webkit-transition: background-color 0.5s, -webkit-transform 0.5s, color 0.5s, opacity 0.5s;
     transition: background-color 0.5s, transform 0.5s, color 0.5s, opacity 0.5s;
+}
+
+#systemtabs .tab.active {
+    -moz-transform:rotate(0deg);
+    -webkit-transform:rotate(0deg);
+    -o-transform:rotate(0deg);
+    -ms-transform:rotate(0deg);
+    transform:rotate(0deg);
+
+    opacity:1;
 }
 
 
@@ -332,4 +340,70 @@ footer {
 
 #exampleLinks .testme .testcommands {
     font-variant:small-caps;
+}
+
+
+/* Media queries */
+
+@media (max-width: 1000px) {
+    body {
+        padding:0;
+    }
+
+    #systemtabs {
+        position:static;
+    }
+
+    #systemtabs .tab.active a {
+        color:#611;
+    }
+
+    #systemtabs .tab {
+        display:inline-block;
+        background-color:#fff;
+        border:0;
+        margin:20px 0 0 30px;
+        padding:0 0 0 0;
+
+        -moz-transform:rotate(0deg);
+        -webkit-transform:rotate(0deg);
+        -o-transform:rotate(0deg);
+        -ms-transform:rotate(0deg);
+        transform:rotate(0deg);
+        opacity:0.8;
+
+        -webkit-transition: background-color 0.5s, -webkit-transform 0.5s, color 0.5s, opacity 0.5s;
+        transition: background-color 0.5s, transform 0.5s, color 0.5s, opacity 0.5s;
+    }
+
+    #systemtabs a {
+        display:block;
+        font-family: 'Calligraffitti', cursive;
+        font-size: 22px;
+        padding: 12px 20px 10px 20px;
+        margin:0;
+
+        -webkit-transition: color 0.5s;
+        transition: color 0.5s;
+    }
+}
+
+@media (max-width:740px) {
+    #headerBG {
+        background-image:none;
+    }
+
+    #headerBG a {
+        background:#fff url('../media/image/wabe-reversed.png') no-repeat;
+        display:block;
+        position:static;
+        height:100px;
+        width:100%;
+    }
+}
+
+@media (max-width:520px) {
+    #systemtabs .tab {
+        display:block;
+    }
 }

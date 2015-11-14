@@ -19,28 +19,26 @@
 <div id="page">
     <header>
         <div id="headerBG"><a href="/"></a></div>
-        <div id="mainmenu">
-            <ul>
-                {% assign url = page.url|remove:'index.html' %}
-                <li><a href="/download/"{% if url == '/download/' %} class="active"{% endif %}>Download</a></li>
-                <li><a href="/demo/"{% if url == '/demo/' %} class="active"{% endif %}>Demos</a></li>
-                <li><a href="/doc/"{% if url == '/doc/' %} class="active"{% endif %}>Documentation</a></li>
-                <li><a href="/vorple/release/doc/API/">API</a></li>
-                <li><a href="https://github.com/juhana/vorple">Source</a></li>
-                <li><a href="/outgribe/">Blog</a></li>
-            </ul>
-        </div>
-        <div id="systemtabs">
-            <div class="tab" id="undumTab">
+        <ul id="mainmenu">
+            {% assign url = page.url|remove:'index.html' %}
+            <li{% if url == '/download/' %} class="active"{% endif %}><a href="/download/">Download</a></li>
+            <li{% if url == '/demo/' %} class="active"{% endif %}><a href="/demo/">Demos</a></li>
+            <li{% if url == '/doc/' %} class="active"{% endif %}><a href="/doc/">Documentation</a></li>
+            <li><a href="/vorple/release/doc/API/">API</a></li>
+            <li><a href="https://github.com/juhana/vorple">Source</a></li>
+            <li><a href="/outgribe/">Blog</a></li>
+        </ul>
+        <ul id="systemtabs">
+            <li class="tab" id="undumTab">
                 <a href="#undum">Undum</a>
-            </div>
-            <div class="tab" id="inform6Tab">
+            </li>
+            <li class="tab" id="inform6Tab">
                 <a href="#inform6">Inform 6</a>
-            </div>
-            <div class="tab" id="inform7Tab">
+            </li>
+            <li class="tab" id="inform7Tab">
                 <a href="#inform7">Inform 7</a>
-            </div>
-        </div>
+            </li>
+        </ul>
     </header>
 
     <div id="content">
