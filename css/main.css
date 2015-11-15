@@ -67,15 +67,13 @@ header {
 
 #headerBG {
     height:100px;
-    background:#fff url(../media/image/wabe.png) no-repeat top left;
+    background:#fff url(../media/image/wabe-reversed.png) no-repeat top left;
 }
 
 #headerBG a {
     display:block;
-    position:relative;
-    left:500px;
-    height:100px;
-    width:200px;
+    height:87px;
+    width:100%;
 }
 
 #content, article#content {
@@ -350,6 +348,10 @@ footer {
         padding:0;
     }
 
+    #page {
+        max-width:740px;
+    }
+
     #systemtabs {
         position:static;
     }
@@ -385,20 +387,6 @@ footer {
 
         -webkit-transition: color 0.5s;
         transition: color 0.5s;
-    }
-}
-
-@media (max-width:740px) {
-    #headerBG {
-        background-image:none;
-    }
-
-    #headerBG a {
-        background:#fff url('../media/image/wabe-reversed.png') no-repeat;
-        display:block;
-        position:static;
-        height:100px;
-        width:100%;
     }
 }
 
