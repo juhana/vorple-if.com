@@ -394,4 +394,14 @@ footer {
     #systemtabs .tab {
         display:block;
     }
+
+    #announcementContainer {
+        max-width:none;
+        background-image:none;
+    }
+
+    #announcement {
+        max-width:none;
+        padding-right:0;
+    }
 }
