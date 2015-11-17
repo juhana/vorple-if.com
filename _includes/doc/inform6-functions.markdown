@@ -63,7 +63,7 @@ declare an array that's not hugehugestr and adapt the code of this function.
 Finally, write your own `VorpleStartup()` routine to do things while Vorple is starting up; for instance
 you can queue silent commands, that will be executed by Vorple before the Initialise routine is done.
 
-Relevant examples: Convenience Store, Spy Games, Scrambled Eggs, The Sum of Human Knowledge (note that
+Relevant examples: **Convenience Store**, **Spy Games**, **Scrambled Eggs**, **The Sum of Human Knowledge** (note that
 this one uses its own CSS sheet), and all the other ones.
 
 ### Vorple-hyperlinks.h
@@ -80,7 +80,7 @@ dontShow can take the following values: `0` by default (show the command and the
 of `DONT_SHOW_COMMAND`, `DONT_SHOW_RESPONSE` or `DONT_SHOW_COMMAND_OR_RESPONSE`.
 * `VorpleLinkCommand(cmd, dontShow)`: similar, but the link will read the explicit command.
 
-Relevant examples: Click to Learn More, Click to Retry.
+Relevant examples: **Click to Learn More**, **Click to Retry**.
 
 ### Vorple-multimedia.h
 
@@ -108,7 +108,7 @@ to loop it.
 * `VorplePlayYoutubeVideo(youtubeID)`: play the YouTube video of your choice by specifying its YouTube ID;
 Vorple will play the video at the URL https://www.youtube.com/watch?youtubeID
 
-Relevant examples: Serinette, Port Royal Reggae, The Trampoline.
+Relevant examples: **Serinette**, **Port Royal Reggae**, **The Trampoline**.
 
 ### Vorple-notifications.h
 
@@ -126,7 +126,7 @@ where the notification should be displayed. It can take the following values: `V
 * `VorpleDefaultNotifPosition(pos)`: all notifications will be displayed at a specific position by
 default.
 
-Relevant examples: How to I, Score Notifications.
+Relevant examples: **How to I**, **Score Notifications**.
 
 ### Vorple-screen-effects.h
 
@@ -154,7 +154,7 @@ name and showing the text.
 * `VorpleClearScreen(window)`: clear all the screen (`0`), the status bar (`1`) or the main window (`2`).
 * `VorplePause()`: wait for a key press then clear the screen.
 
-Relevant examples: Letters from a Madman, Monty Hall (note that it uses its own CSS sheet).
+Relevant examples: **Letters from a Madman**, **Monty Hall** (note that it uses its own CSS sheet).
 
 ### Vorple-tooltips.h
 
@@ -170,4 +170,4 @@ the element named `name`.
 * `VorpleTooltipPrompt(tip, n)`: after n tenths of second, a tooltip with the tip will display on the
 prompt.
 
-Relevant examples: Medical Dictionary, How to II, Ibid (2).
+Relevant examples: **Medical Dictionary**, **How to II**, **Ibid (2)**.
