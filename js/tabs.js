@@ -78,7 +78,7 @@ jQuery( function( $ ) {
     }
 
     // default to I7
-    if( chosenTab.indexOf( 'inform' ) === -1 && chosenTab !== 'undum' ) {
+    if( !chosenTab || ( chosenTab.indexOf( 'inform' ) === -1 && chosenTab !== 'undum' ) ) {
         chosenTab = 'inform7';
     }
 

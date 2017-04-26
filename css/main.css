@@ -1,5 +1,6 @@
-@import url(http://fonts.googleapis.com/css?family=Calligraffitti);
-@import url(http://fonts.googleapis.com/css?family=Merriweather:300,300italic,700,700italic);
+@import url('http://fonts.googleapis.com/css?family=Merriweather:300,300italic,700,700italic');
+@import url('https://fonts.googleapis.com/css?family=Merienda+One');
+
 
 html, body {
     background:#ccc url('image/bg.png') repeat fixed;
@@ -12,7 +13,7 @@ body {
 
 p, li, div.note {
     line-height:1.6em;
-    font-size:0.9em;
+    font-size:14px;
     font-weight:300;
 }
 
@@ -34,7 +35,7 @@ a, a:visited {
 }
 
 h1, h2, h3 {
-    font-family: 'Calligraffitti', cursive;
+    font-family: 'Merienda One', cursive;
     letter-spacing: 1px;
 }
 
