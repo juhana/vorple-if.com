@@ -1,0 +1,18 @@
+---
+layout: default
+title: Installing Vorple
+desc: Installing Vorple to Inform 7 and setting up the development environment
+permalink: /doc/setup
+---
+
+<article id="inform6" class="documentation">
+    {% capture i6doc %}{% include doc/inform6-setup.markdown %}{% endcapture %}
+    {{ i6doc | markdownify }}
+</article>
+
+<article id="inform7" class="documentation">
+    {% capture i7doc %}{% include doc/inform7-setup.markdown %}{% endcapture %}
+    {{ i7doc | markdownify }}
+</article>
+
+{% include doc/footer.html %}

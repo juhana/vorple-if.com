@@ -18,40 +18,6 @@ h1 {
     margin:0 auto;
 }
 
-.content p, li {
-    line-height:1.4em;
-}
-
-.content a, .content a:visited, .fakeLink {
-    text-decoration:none;
-    color:#66a;
-}
-
-.content h2 {
-    font-family:'Calligraffitti', cursive;
-    margin-top:2.5em;
-    font-size:200%;
-}
-
-.content h3 {
-    font-family:'Calligraffitti', cursive;
-    margin-top:1.8em;
-    font-size:150%;
-    border-bottom:1px solid gray;
-}
-
-.content h4 {
-    font-family:'Calligraffitti', cursive;
-    margin-top:1.8em;
-    font-size:120%;
-}
-
-.content h5, .resources {
-    font-family:'Calligraffitti', cursive;
-    font-size:100%;
-    font-weight:bold;
-}
-
 .toc ul {
     list-style:none;
 }

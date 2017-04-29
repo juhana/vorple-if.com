@@ -1,5 +1,3 @@
-# Inform 6 Interactive Fiction with Vorple
-
 
 ## List of Vorple functions
 

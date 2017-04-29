@@ -2,8 +2,7 @@ jQuery( function( $ ) {
     var chosenTab;
 
         // the containers must be cached because of hash change scroll disabling later
-    var $undumId = $( '#undum' ),
-        $inform6Id = $( '#inform6' ),
+    var $inform6Id = $( '#inform6' ),
         $inform7Id = $( '#inform7' );
 
     var saveChosenTab = function() {
@@ -17,11 +16,9 @@ jQuery( function( $ ) {
             $.fx.off = true;
         }
 
-        var $undumContent = $( '.undumContent' ).add( $undumId ),
-            $i6Content = $( '.i6Content' ).add( $inform6Id ),
+        var $i6Content = $( '.i6Content' ).add( $inform6Id ),
             $i7Content = $( '.i7Content' ).add( $inform7Id ),
             $informContent = $( '.informContent' ),     // content common for I6 & I7
-            $undumTab = $( '#undumTab' ),
             $i6Tab = $( '#inform6Tab' ),
             $i7Tab = $( '#inform7Tab' );
 
@@ -29,7 +26,6 @@ jQuery( function( $ ) {
 
         switch( chosenTab ) {
             case 'inform6':
-                $undumContent.slideUp();
                 $i7Content.slideUp();
                 $i6Content.slideDown();
                 $informContent.slideDown();
@@ -37,19 +33,10 @@ jQuery( function( $ ) {
                 break;
 
             case 'inform7':
-                $undumContent.slideUp();
                 $i6Content.slideUp();
                 $i7Content.slideDown();
                 $informContent.slideDown();
                 $i7Tab.addClass( 'active' );
-                break;
-
-            case 'undum':
-                $undumContent.slideDown();
-                $i6Content.slideUp();
-                $i7Content.slideUp();
-                $informContent.slideUp();
-                $undumTab.addClass( 'active' );
                 break;
         }
 
@@ -59,13 +46,13 @@ jQuery( function( $ ) {
     };
 
     if( window.location.hash ) {
-        if( window.location.hash.toLowerCase() === '#undum' || window.location.hash.toLowerCase() === '#inform6' || window.location.hash.toLowerCase() === '#inform7' ) {
+        if( window.location.hash.toLowerCase() === '#inform6' || window.location.hash.toLowerCase() === '#inform7' ) {
             chosenTab = window.location.hash.toLowerCase().substr( 1 );
         }
         else {
             // switch to correct tab if the anchor is inside
             // their content
-            var $parent = $( window.location.hash ).closest( '#undum, #inform6, #inform7' );
+            var $parent = $( window.location.hash ).closest( '#inform6, #inform7' );
 
             if( $parent.length > 0 ) {
                 chosenTab = $parent.attr( 'id' );
@@ -78,7 +65,7 @@ jQuery( function( $ ) {
     }
 
     // default to I7
-    if( !chosenTab || ( chosenTab.indexOf( 'inform' ) === -1 && chosenTab !== 'undum' ) ) {
+    if( !chosenTab || chosenTab.indexOf( 'inform' ) === -1  ) {
         chosenTab = 'inform7';
     }
 
@@ -99,9 +86,6 @@ jQuery( function( $ ) {
     // set page status on hash change
     $( window ).on( 'hashchange', function() {
         switch( window.location.hash.toLowerCase() ) {
-            case '#undum':
-                chosenTab = 'undum';
-                break;
             case '#inform6':
                 chosenTab = 'inform6';
                 break;

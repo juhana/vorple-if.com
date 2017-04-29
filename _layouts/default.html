@@ -20,17 +20,13 @@
         <div id="headerBG"><a href="/"></a></div>
         <ul id="mainmenu">
             <li{% if url == '/download/' %} class="active"{% endif %}><a href="/download/">Download</a></li>
-            <li{% if url == '/demo/' %} class="active"{% endif %}><a href="/demo/">Demos</a></li>
+            <li{% if url == '/demo/' %} class="active"{% endif %}><a href="/demo/">Demo</a></li>
             <li{% if url == '/doc/' %} class="active"{% endif %}><a href="/doc/">Documentation</a></li>
-            <li><a href="/vorple/release/doc/API/">API</a></li>
             <li><a href="https://github.com/vorple">Source</a></li>
             <li><a href="/outgribe/">Blog</a></li>
         </ul>
         {% if url != '/' %}
         <ul id="systemtabs">
-            <li class="tab" id="undumTab">
-                <a href="#undum">Undum</a>
-            </li>
             <li class="tab" id="inform6Tab">
                 <a href="#inform6">Inform 6</a>
             </li>
