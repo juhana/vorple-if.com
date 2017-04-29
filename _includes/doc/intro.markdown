@@ -26,19 +26,30 @@ These are the currently known major issues:
 * No Internet Explorer support — the system should support the latest versions
   of all major browsers, but the interpreter engine uses a feature that doesn't
   work in IE 11.
+* Functionality in mobile devices hasn't been thoroughly tested, and some
+  features are known to not work on mobile devices, e.g. most of the sound
+  system (although partly because of inherent restrictions in mobile browsers
+  that can't be fully circumvented.)
 * Some planned features are not ready yet. In Vorple Screen Effects setting font
   styles for the entire page isn't implemented, neither is setting colors to an
   arbitrary value from inside Inform. The transient text feature is removed from
   the Screen Effects extension and will be included in a future text animation
   extension. Vorple Modal Windows has only the basic functionality.
-* Executing JavaScript commands may cause insertion of additional line breaks
-  to the story output in Inform 7. This happens depending on the punctuation in the command
-  and the location in the Inform code where it's executed. Most noticeably
-  the Vorple Status Line extension may add extra line breaks in the output.
+* Displaying text in an element that's not the main text flow may cause
+  insertion of additional line breaks to the story output in Inform 7. This
+  may happen depending on the location in the Inform code where it's executed.
 * The prompt is printed twice when the story ends.
 * Opening multiple modal windows in succession with Vorple Modal Windows
   may cause the modals to act erratically.
+* No status line – the status line extension is "almost there" but doesn't
+  work well enough to be published.
 
-The full list of known issues is [for the interpreter here](https://github.com/vorple/vorple/issues?utf8=%E2%9C%93&q=is%3Aissue%20created%3A%3E2017-04-26%20)
+Also the technical documentation is incomplete. Most functions in the
+JavaScript API are documented [in the code](https://github.com/vorple/vorple).
+Technical documentation is necessary only for developers who wish to
+integrate Inform with their own custom JavaScript code or other JavaScript
+libraries, so it doesn't affect "normal" use of the Inform extensions.
+
+The current list of known issues is [for the interpreter here](https://github.com/vorple/vorple/issues?utf8=%E2%9C%93&q=is%3Aissue%20created%3A%3E2017-04-26%20)
 and [for the extensions here](https://github.com/vorple/inform7/issues?utf8=%E2%9C%93&q=is%3Aissue%20created%3A%3E2017-04-26%20).
 
