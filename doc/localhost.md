@@ -2,7 +2,7 @@
 layout: default
 title: Installing a local server for Vorple
 desc: Instructions for installing a local server for Vorple development. 
-permalink: /doc/localhost
+permalink: /doc/localhost/
 ---
 
 Installing a local server for Vorple

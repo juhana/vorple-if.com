@@ -10,7 +10,7 @@ module.exports = function( grunt ) {
             prod: {
                 options: {
                     src: "_site/",
-                    dest: grunt.option( "dest" ) || "~/www/vorple",
+                    dest: grunt.option( "dest" ) || "/var/www/vorple",
                     host: grunt.option( "host" )
                 }
             }
