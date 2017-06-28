@@ -85,7 +85,7 @@ that will run the Vorple effects correctly!
 In the [download package](/download/#inform6) there is a file called "play.html".
 If you edit the file you should see a line that looks like like
  
-    parchment.options.default_story = [ "test.ulx" ];
+    story: "test.ulx"
 
 Just replace "test.ulx" by the name of your story file. You then need to
 [install a local server]({{site.url}}/doc/localhost) on your computer to be able
