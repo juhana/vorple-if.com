@@ -94,9 +94,10 @@ systems.
 Bugs can be reported at the project's GitHub pages. Issues related
 to the interpreter should go to
 [the main repository](https://github.com/vorple/vorple/issues)
-and issues related to the Inform 7 extensions to
+and issues related to the Inform extensions to either
+[the I6 library repository](https://github.com/vorple/inform6/issues) or
 [the I7 extensions repository](https://github.com/vorple/inform7/issues).
-If you're not sure which one to use, post to the extensions repository.
+If you're not sure which to use, post to an extensions repository.
 
 Vorple and all official materials are open source and free for anyone
 to use for any purpose. (Mandatory footnote: Do still read all the licenses

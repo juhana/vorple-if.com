@@ -51,5 +51,7 @@ integrate Inform with their own custom JavaScript code or other JavaScript
 libraries, so it doesn't affect "normal" use of the Inform extensions.
 
 The current list of known issues is [for the interpreter here](https://github.com/vorple/vorple/issues?utf8=%E2%9C%93&q=is%3Aissue%20created%3A%3E2017-04-26%20)
-and [for the extensions here](https://github.com/vorple/inform7/issues?utf8=%E2%9C%93&q=is%3Aissue%20created%3A%3E2017-04-26%20).
+and for the extensions here:
+[Inform 6](https://github.com/vorple/inform6/issues?q=is%3Aissue+is%3Aopen),
+[Inform 7](https://github.com/vorple/inform7/issues?utf8=%E2%9C%93&q=is%3Aissue%20created%3A%3E2017-04-26%20).
 

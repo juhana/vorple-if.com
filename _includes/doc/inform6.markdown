@@ -16,12 +16,13 @@ Note that Vorple is also available for [Inform 7](http://inform7.com).
 Vorple is structured around a core extension, contained in the "vorple.h" file.
 The other extensions provide the following capabilities:
 
-* Vorple Hyperlinks: Clickable web links and commands
-* Vorple Multimedia: Images, sounds and videos
-* Vorple Notifications: Notifications as text banners
-* Vorple Screen Effects: Text and font effects. Roughly the equivalent of
-  the built-in Basic Screen Effects extension.
-* Vorple Tooltips: Pop-up tooltips, timed or on mouse hover
+* Vorple Command Prompt Control: Manipulation of the command line and its history.
+* Vorple Hyperlinks: Clickable web links and commands.
+* Vorple Modal Windows: Pop-up windows.
+* Vorple Multimedia: Images, sounds and videos.
+* Vorple Notifications: Notifications as text banners.
+* Vorple Screen Effects: Text and font effects.
+* Vorple Tooltips: Pop-up tooltips, timed or on mouse hover.
 
 ### Using Vorple
 
@@ -75,8 +76,8 @@ Time to do a quick example: type the following source code:
         with description "You're in a nondescript room.",
     has light;
 
-After compiling it, you should have a .z5 (or .z8) file -- remember that
-Vorple doesn't work with Glulx for now. If you run it in a standard
+After compiling it, you should have a .ulx file -- the latest version of Vorple
+is not yet compatible with the Z-Machine. If you run it in a standard
 interpreter, it likely won't support Vorple -- but it won't crash, and your
 game will still be playable. However, we have a web interpreter
 that will run the Vorple effects correctly!
@@ -84,34 +85,28 @@ that will run the Vorple effects correctly!
 In the [download package](/download/#inform6) there is a file called "play.html".
 If you edit the file you should see a line that looks like like
  
-    parchment.options.default_story = [ "test.z5" ];
+    parchment.options.default_story = [ "test.ulx" ];
 
-Just replace "test.z5" by the name of your story file, and you're good to go!
-To publish your work, upload the "play.html" file and the "interpreter"
-directory along with its contents to a web server.
+Just replace "test.ulx" by the name of your story file. You then need to
+[install a local server]({{site.url}}/doc/localhost) on your computer to be able
+to test your game. After this is done, open a web browser and
+type `http://localhost:8000/play.html` to the address bar.
 
 
 ### Technical note about I6 stubs
 
-Vorple makes use of a few I6 entry points that are defined as stubs in the
-I6 librairies (usually at the end of your language grammar definition file).
-Those stubs are ParserError (called every time the parser didn't understand
-the sentence) and LookRoutine (called after each >look command including the
-initial one).
-
-You might have defined (un-stubbed) those routines in your code, before
-including "grammar"; if that is the case, the I6 compiler will return an
-error. However Vorple creates 2 stubs with the names "MyParserError" and
-"MyLookRoutine", that are called in those routines. Hence, you simply need
-to rename your "ParserError" routine in "MyParserError" (and same for
-LookRoutine), and move the definition of those routines to *before including
-a vorple file for the second time*. And everything should be fine! (See the
-"How to II" example for sample code.)
+Vorple makes use of the LookRoutine entry point, which is defined as a stub
+in the I6 libraries, and is called after each >look command including the
+initial one. If you had un-stubbed this routine, the compiler will return
+an error. However, Vorple also creates a MyLookRoutine stub, called in the
+new LookRoutine; if you define this function before including Vorple,
+your code will be executed as if you had defined LookRoutine.
 
 Additionally, Vorple defines the stub "VorpleStartup", that allows you to
 do things while Vorple is initialising (i.e. during VorpleInitialise). This
 is useful mostly for one thing, which is queueing commands so that they are
-parsed and executed before the game even starts.
+parsed and executed before the game even starts. Note that you can also
+use the VorpleInterfaceSetup rulebook to add code to be executed at startup.
 
 
 ## Compatibility with non-Vorple interpreters

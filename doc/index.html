@@ -5,7 +5,11 @@ desc: Vorple documentation
 ---
 
 <article id="inform6" class="documentation">
-    <strong>Coming soon!</strong>
+{% capture i6doc %}
+{% include doc/inform6.markdown %}
+{% include doc/in-depth.markdown %}
+{% endcapture %}
+{{ i6doc | markdownify }}
 </article>
 
 <article id="inform7" class="documentation">
