@@ -1,4 +1,0 @@
-name: vorple-if.com
-markdown: kramdown
-highlighter: rouge
-exclude: [node_modules]

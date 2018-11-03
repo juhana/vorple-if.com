@@ -1,0 +1,25 @@
+{
+  "authoring": {
+    "Getting started": [
+      "getting-started",
+      "about",
+      "inform-versions",
+      "localhost"
+    ],
+    "Inform 6": [
+      "i6-authoring",
+      "i6-api"
+    ],
+    "Inform 7": [
+      "i7-installation",
+      "i7-authoring"
+    ],
+    "Advanced topics": [
+      "in-depth",
+      "glulx-compatibility",
+      "js-eval",
+      "css",
+      "ui-state"
+    ]
+  }
+}

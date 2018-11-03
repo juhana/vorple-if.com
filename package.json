@@ -1,8 +1,0 @@
-{
-  "name": "vorple-if.com",
-  "version": "",
-  "devDependencies": {
-    "grunt-rsync": "~0.5.0",
-    "grunt": "~0.4.4"
-  }
-}
