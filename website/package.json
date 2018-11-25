@@ -19,7 +19,7 @@
   "homepage": "https://vorple-if.com",
   "repository": "github:vorple/vorple-if.com",
   "devDependencies": {
-    "docusaurus": "^1.4.0",
+    "docusaurus": "^1.5.1",
     "jsdoc-to-markdown": "^4.0.1"
   }
 }
