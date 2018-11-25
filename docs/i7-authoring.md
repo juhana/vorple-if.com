@@ -50,9 +50,10 @@ From now on after making changes to the Inform code we can just push the release
 button, switch to the browser and reload the page.
 
 A story compiled this way doesn't have debugging commands like ACTIONS or SHOWME available.
-To re-enable them, try the extension
-[Extended Debugging by Erik Temple](http://inform7.com/extensions/Erik%20Temple/Extended%20Debugging/index.html).
-Just remember to disable it again when actually releasing the story.
+To re-enable them, choose "Release for Testing" in the Release menu instead of pushing the 
+"Release" button.
+
+![Release - Release for Testing in the Inform IDE menu](/img/release-for-testing.png)
 
 The extensions contain more detailed instructions on how to use them, so for example
 if you wish to add pictures or sounds to the story, open the Vorple Multimedia
