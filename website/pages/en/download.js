@@ -41,7 +41,7 @@ class Download extends React.Component {
     return (
       <div className="docMainWrapper wrapper">
         <Container className="mainContainer documentContainer postContainer">
-          <div className="post">
+          <article className="post">
             <header className="postHeader">
               <h2>Downloads</h2>
             </header>
@@ -52,20 +52,21 @@ class Download extends React.Component {
             <ul>
               <li>
                 <a href={siteConfig.baseUrl + "releases/vorple-inform6-3.1.0.zip"}>
-                    Inform 6 libraries
+                  Inform 6 libraries
                 </a>
               </li>
-                <li>
-                    <a href={siteConfig.baseUrl + "releases/vorple-inform7-3.1.0.zip"}>
-                        Inform 7 extensions and template
-                    </a>
-                </li>
+              <li>
+                <a href={siteConfig.baseUrl + "releases/vorple-inform7-3.1.0.zip"}>
+                  Inform 7 extensions and template
+                </a>
+              </li>
             </ul>
+            
             <p>
-              Additionally the resource files used in some of the examples can be downloaded{" "}
-                <a href={siteConfig.baseUrl + "resources.zip"}>here</a>.
+              Additionally the resource files used in some of the examples can be downloaded
+              {" "}<a href={siteConfig.baseUrl + "resources.zip"}>here</a>.
             </p>
-          </div>
+          </article>
         </Container>
       </div>
     );
