@@ -46,13 +46,25 @@ const siteConfig = {
         {
             caption: "Jack Welch: En Garde",
             image: "img/covers/en-garde.png",
-            infoLink: "https://ifcomp.org/1855/content/play.html",
+            infoLink: "https://ifdb.tads.org/viewgame?id=7btsk9iqqku2t8g9",
+            pinned: true
+        },
+        {
+            caption: "Jack Welch: Re: Dragon",
+            image: "img/covers/re-dragon.png",
+            infoLink: "https://ifdb.tads.org/viewgame?id=qm3t0xblg4rqfii4",
             pinned: true
         },
         {
             caption: "J. Francisco Martín Lisaso: La Zona",
             image: "img/covers/la-zona.png",
             infoLink: "https://jomali.itch.io/la-zona",
+            pinned: true
+        },
+        {
+            caption: "J. Francisco Martín Lisaso: La pequeña cerillera",
+            image: "img/covers/cerillera.png",
+            infoLink: "https://jomali.itch.io/la-pequenna-cerillera",
             pinned: true
         },
         {

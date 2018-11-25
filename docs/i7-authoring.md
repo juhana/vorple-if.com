@@ -49,9 +49,9 @@ message pop up in the top right corner of the web page.
 From now on after making changes to the Inform code we can just push the release
 button, switch to the browser and reload the page.
 
-A story compiled this way doesn't have debugging commands like ACTIONS or SHOWME available.
-To re-enable them, choose "Release for Testing" in the Release menu instead of pushing the 
-"Release" button.
+A story compiled this way doesn't have debugging commands like ACTIONS or SHOWME 
+available. To re-enable them, choose "Release for Testing" in the Release menu 
+instead of pushing the "Release" button.
 
 ![Release - Release for Testing in the Inform IDE menu](/img/release-for-testing.png)
 
