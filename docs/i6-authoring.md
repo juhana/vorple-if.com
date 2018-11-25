@@ -3,7 +3,7 @@ id: i6-authoring
 title: Authoring with Vorple in Inform 6
 ---
 
-After [downloading the extensions](download.md), you can start using them! The rule is simple:
+After [downloading the extensions](/download.html), you can start using them! The rule is simple:
 you need to include Vorple twice: once before including the parser, and once
 after including the verblib. (Those are usually defined together anyway.) Don't
 worry, Vorple will handle everything correctly; it's just that some things need
