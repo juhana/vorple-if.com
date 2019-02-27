@@ -56,12 +56,6 @@ const siteConfig = {
             pinned: true
         },
         {
-            caption: "J. Francisco Martín Lisaso: La Zona",
-            image: "img/covers/la-zona.png",
-            infoLink: "https://jomali.itch.io/la-zona",
-            pinned: true
-        },
-        {
             caption: "J. Francisco Martín Lisaso: La pequeña cerillera",
             image: "img/covers/cerillera.png",
             infoLink: "https://jomali.itch.io/la-pequenna-cerillera",
