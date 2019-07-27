@@ -1,13 +1,9 @@
-"use strict";
-
 const jsdoc2md = require( "jsdoc-to-markdown" );
 const fs = require( "fs" );
 const path = require( "path" );
 
 const inputDir = path.resolve( __dirname, "../../../vorple/src/" );
 const outputFile = path.resolve( __dirname, "../../docs/js-api.md" );
-
-let output = "";
 
 fs.readdir( inputDir, ( err, files ) => {
     Promise.all( files.map( file => {

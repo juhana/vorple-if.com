@@ -19,7 +19,8 @@
       "glulx-compatibility",
       "js-eval",
       "css",
-      "ui-state"
+      "ui-state",
+      "filesystem"
     ]
   }
 }

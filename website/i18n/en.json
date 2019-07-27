@@ -17,6 +17,9 @@
       "css": {
         "title": "Styling the game with CSS"
       },
+      "filesystem": {
+        "title": "The virtual filesystem"
+      },
       "glulx-compatibility": {
         "title": "Compatibility with other interpreters"
       },
