@@ -34,15 +34,20 @@ so read the documentation carefully before using them.
 The directory structure created by Vorple looks like this:
 
 ```text
+extended/
+├── transcripts/
+└── savegames/
 inform/
-savegames/
-transcripts/
+tmp/
 vorple/
 ├── VpHndshk
 ├── VpJSEval
 ├── VpJSRtrn
 └── VpJSType
 ```
+
+The *extended* directory has more space available and stores transcripts and save games. 
+See the next chapter for details.
 
 The *inform* directory is what contains the files Inform handles. When you say for example...
 
@@ -54,9 +59,12 @@ The file of Magic Tricks is called "tricks.txt".
 applies only to Vorple, so on a standard interpreter the location would be different,
 depending on the interpreter.
 
-The `vorple.file` methods default to using *inform* as the current working directory (cwd)
-so `vorple.file.read("foo")` is equivalent to `vorple.file.read("/inform/foo")`
+The `vorple.file.*` methods default to using */inform* as the current working directory
+(cwd) so `vorple.file.read("foo")` is equivalent to `vorple.file.read("/inform/foo")`
 which is equivalent to `vorple.file.read("foo", { cwd: "/inform" })`.
+
+The *tmp* directory is for short-lived, temporary files. It's a memory store so it
+will be cleared automatically when the page is closed.
 
 The files in the *vorple* directory are used by Vorple to tell the Inform story that it's
 running in the Vorple interpreter (VpHndshk), pass JavaScript code from Inform to the
@@ -69,12 +77,70 @@ will always return the same standard response, regardless of the file's actual c
 By getting different contents than what it just wrote to the file is what allows Inform
 to determine that it's running on the Vorple interpreter.
 
-The *savegames* and *transcripts* directories contain the files that Vorple creates when
-the player saves the game or starts a transcript. While reading these files is safe, it's
-easy to break things by trying to edit them.
-
 To avoid name clashes, it's recommended to create a new uniquely named directory to store
 your files if possible (files read by Inform must be in the *inform* directory.)
+
+
+### The *extended* directory
+
+Save files and transcripts are stored in */extended/savegames* and */extended/transcripts*.
+The *extended* directory uses IndexedDB which has
+[larger capacity than LocalStorage](https://www.html5rocks.com/en/tutorials/offline/quota-research/). 
+LocalStorage has a cap of about 5-10 MB per domain depending on the browser. IndexedDB
+should have more than enough space (at least 50 MB) for most use cases and the browser
+will ask the user automatically if more space is needed. Note that these limits (and the
+filesystem) are shared between everything on the same domain, so if you have for example
+multiple games on your own web site, they all eat into to the same storage capacity per player.
+
+The constant `vorple.file.ASYNC_FS_ROOT` contains the path to the directory
+(`"/extended"`) and constants `vorple.file.TRANSCRIPT_PATH` and
+`vorple.file.SAVEFILE_PATH` contain paths to the transcript and savefile directories.
+As the paths are mainly for internal use, it's recommended to access them using the
+constants in case the paths change in future versions.
+
+The extended directory is asynchronous, so **`vorple.file.*` methods won't work in the
+extended directory**. To access it, only asynchronous BrowserFS methods
+can be used. For example:
+
+```javascript
+const fs = vorple.file.getFS();
+
+// read the contents of a text file in /extended
+fs.readFile(
+    vorple.file.ASYNC_FS_ROOT + "/example.txt",
+    "utf8",
+    function( error, result ) {
+        if( error ) {
+            console.log( "Couldn't read file!", error );
+            return;
+        }
+
+        console.log( "File contents:", result );
+    }
+);
+```
+
+Vorple supports saving transcripts when the player initializes it by commanding
+TRANSCRIPT ON, but retrieving the transcripts must be handled separately.
+As a bare bones example:
+
+```javascript
+const fs = vorple.file.getFS();
+
+// get the contents of the transcripts directory
+fs.readdir( vorple.file.TRANSCRIPT_PATH, function( files ) {
+    // "files" now contains the list of saved transcripts
+    for( let i = 0; i < files.length; ++i ) {
+        fs.readFile( 
+            vorple.file.path( files[ i ], vorple.file.TRANSCRIPT_PATH ),
+            "utf8",
+            function( error, contents ) {
+                console.log( "Transcript file " + files[ i ] + " contains " + contents );
+            }
+        );
+    }
+});
+```
 
 
 ## Exchanging files with Inform 7
@@ -146,7 +212,7 @@ the first line of the file.
 
 ## Other considerations
 
-* For simpicity's sake, Vorple's filesystem methods return just true or false to
+* For simplicity's sake, Vorple's filesystem methods return just true or false to
   indicate if the operation succeeded or failed. If the actual reason for the
   failure is required, the BrowserFS methods can be used instead and they will
   throw an error that contains more details.
@@ -156,18 +222,15 @@ the first line of the file.
 * `vorple.file.read()` and `vorple.file.write()` read and write text files.
   To handle binary files, BrowserFS methods need to be used. Vorple doesn't 
   directly support binary files.
-* Vorple uses the synchronous versions of the filesystem methods and it's a good
-  idea to do so even when accessing the filesystem directly. LocalStorage itself 
-  is synchronous so there's no benefit to using the asynchronous versions.
 * While the filesystem fully supports Unicode, Inform reads and writes files in
   ASCII Latin-1. Unicode characters outside Latin-1 won't be read correctly by Inform.
-* LocalStorage is domain-specific. That is, all Vorple games played on example.com
+* Storage is domain-specific. That is, all Vorple games played on example.com
   use the same virtual filesystem and share the same files. Conversely, games on 
   example1.com can't access the filesystem of games played on example2.com.
   Subdomains are considered different domains, so foo.example.com has a separate
   virtual filesystem from bar.example.com.
-* LocalStorage persists until the user clears it manually in browser settings
+* The filesystem persists until the user clears it manually in browser settings
   ("clear browsing data" or similar.) In private browsing / incognito mode
-  localStorage is cleared after the user closes the last private browsing window.
+  storage is cleared after the user closes the last private browsing window.
 * While BrowserFS supports file permissions (chmod), they don't make much sense
   in this context and are best left unused.
