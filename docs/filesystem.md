@@ -49,13 +49,13 @@ vorple/
 The *extended* directory has more space available and stores transcripts and save games. 
 See the next chapter for details.
 
-The *inform* directory is what contains the files Inform handles. When you say for example...
+The *inform* directory is what contains the files Inform handles. When we say for example...
 
 ```inform7
-The file of Magic Tricks is called "tricks.txt".
+The file of Magic Tricks is called "tricks".
 ```
 
-...Vorple will actually try to read a file called `/inform/tricks.txt`. Note that this
+...Vorple will actually try to read a file called `/inform/tricks`. Note that this
 applies only to Vorple, so on a standard interpreter the location would be different,
 depending on the interpreter.
 
@@ -77,8 +77,8 @@ will always return the same standard response, regardless of the file's actual c
 By getting different contents than what it just wrote to the file is what allows Inform
 to determine that it's running on the Vorple interpreter.
 
-To avoid name clashes, it's recommended to create a new uniquely named directory to store
-your files if possible (files read by Inform must be in the *inform* directory.)
+> To avoid name clashes, it's recommended to create a new uniquely named directory to store
+> your files if possible (files read by Inform must be in the *inform* directory.)
 
 
 ### The *extended* directory
@@ -157,6 +157,12 @@ project and use the same name in the Inform code.
 The file of Best Recipes (owned by project "VORPLE") is called "recipes".
 ```
 
+> Inform 7 has a strict policy when it comes to filenames: The file must be
+> between 3 and 23 letters a-z or numbers, start with a letter, and may not
+> contain special characters or punctuation (which also means no file extensions
+> allowed.) Vorple can create any valid filename that doesn't conform to Inform's
+> restrictions, but those files can't then be read from Inform.
+
 Vorple detects whether it's running an Inform 6 or 7 game and automatically adds the
 correct header to Inform 7 files when using `vorple.file.write()` and doesn't include
 it to the return value of `vorple.file.read()`.
@@ -208,6 +214,33 @@ the first line of the file.
 
 ## Example
 
+Here's a basic, barebones example of writing a file with JavaScript and reading
+it with Inform.
+
+JavaScript:
+
+```javascript
+vorple.file.write( "news", "Read all about it!" );
+```
+
+Inform 7:
+
+```inform7
+The file of news headlines (owned by another project) is called "news".
+
+The newsstand is a room. The stack of newspapers is here. 
+The description of the stack of newspapers is "The headlines proclaim '[text of the file of news headlines]'".
+```
+
+This might seem unnecessary, but one benefit to this approach is that if the
+data is coming from another source via Ajax request, we can fetch it beforehand
+and it's available for the player immediately without having to wait for it to
+load.
+
+Similarly if there's new data coming in periodically via a JavaScript service we
+can write it to a file and let Inform pick it up whenever it needs to.
+Otherwise we'd have to find some way to notify Inform instantly when the data
+comes in, which would be a lot more cumbersome.
 
 
 ## Other considerations
