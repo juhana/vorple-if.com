@@ -21,5 +21,8 @@
   "devDependencies": {
     "docusaurus": "^1.12.0",
     "jsdoc-to-markdown": "^5.0.0"
+  },
+  "dependencies": {
+    "jsdoc": "^3.6.3"
   }
 }

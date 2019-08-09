@@ -298,6 +298,544 @@ Set or unset the the debugging flag.
 **Returns**: <code>boolean</code> - The new status of the debugging flag.  
 
 <hr>
+<a name="module_file"></a>
+
+## file
+This module is the access point to the virtual filesystem. 
+
+The system uses BrowserFS to handle the virtual filesystem in browser's localstorage.
+See https://jvilk.com/browserfs/2.0.0-beta/classes/_backend_localstorage_.localstoragefilesystem.html
+for the full API. The getFS() method can be used to retrieve the filesystem object that can be used
+to access the BrowserFS API directly.
+
+All methods in this module use the synchronous versions of the filesystem methods
+(readFileSync, writeFileSync etc.)
+
+
+* [file](#module_file)
+    * [.ASYNC_FS_ROOT](#module_file.ASYNC_FS_ROOT) : <code>string</code>
+    * [.INFORM_PATH](#module_file.INFORM_PATH) : <code>string</code>
+    * [.VORPLE_PATH](#module_file.VORPLE_PATH) : <code>string</code>
+    * [.SAVEFILE_PATH](#module_file.SAVEFILE_PATH) : <code>string</code>
+    * [.TRANSCRIPT_PATH](#module_file.TRANSCRIPT_PATH) : <code>string</code>
+    * [.TMP_PATH](#module_file.TMP_PATH) : <code>string</code>
+    * [.copy(source, target, [options])](#module_file.copy) ⇒ <code>boolean</code>
+    * [.exists(filename, [options])](#module_file.exists) ⇒ <code>boolean</code>
+    * [.getFS()](#module_file.getFS) ⇒ <code>object</code> \| <code>null</code>
+    * [.info(filename, [options])](#module_file.info) ⇒ <code>object</code> \| <code>null</code>
+    * [.informHeader(project, filename, [ready])](#module_file.informHeader) ⇒ <code>string</code>
+    * [.init()](#module_file.init) ⇒ <code>Promise.&lt;object&gt;</code>
+    * [.isReady(filename, [options])](#module_file.isReady) ⇒ <code>boolean</code>
+    * [.markReady(filename, [ready], [options])](#module_file.markReady) ⇒ <code>boolean</code>
+    * [.mkdir(dirname, [options])](#module_file.mkdir) ⇒ <code>boolean</code>
+    * [.move(source, target, [options])](#module_file.move) ⇒ <code>boolean</code>
+    * [.path(filename, path)](#module_file.path)
+    * [.read(filename, [options])](#module_file.read) ⇒ <code>string</code> \| <code>null</code>
+    * [.readdir(dirname, [options])](#module_file.readdir) ⇒ <code>array</code> \| <code>null</code>
+    * [.rmdir(dirname, [options])](#module_file.rmdir) ⇒ <code>boolean</code>
+    * [.unlink(filename, [options])](#module_file.unlink) ⇒ <code>boolean</code>
+    * [.write(filename, contents, [options])](#module_file.write) ⇒ <code>boolean</code>
+
+<a name="module_file.ASYNC_FS_ROOT"></a>
+
+### file.ASYNC\_FS\_ROOT : <code>string</code>
+The directory root for the extended filesystem which has more space (IndexedDB)
+and uses asynchronous access.
+
+**Kind**: static constant of [<code>file</code>](#module_file)  
+<a name="module_file.INFORM_PATH"></a>
+
+### file.INFORM\_PATH : <code>string</code>
+The directory where Inform reads author-provided files (not saves or transcripts).
+
+**Kind**: static constant of [<code>file</code>](#module_file)  
+<a name="module_file.VORPLE_PATH"></a>
+
+### file.VORPLE\_PATH : <code>string</code>
+The directory Vorple uses for its own files for communication between the interpreter and the game file.
+
+**Kind**: static constant of [<code>file</code>](#module_file)  
+<a name="module_file.SAVEFILE_PATH"></a>
+
+### file.SAVEFILE\_PATH : <code>string</code>
+Save file directory in the extended filesystem.
+
+**Kind**: static constant of [<code>file</code>](#module_file)  
+<a name="module_file.TRANSCRIPT_PATH"></a>
+
+### file.TRANSCRIPT\_PATH : <code>string</code>
+Transcripts directory in the extended filesystem.
+
+**Kind**: static constant of [<code>file</code>](#module_file)  
+<a name="module_file.TMP_PATH"></a>
+
+### file.TMP\_PATH : <code>string</code>
+The directory for temporary files. The temporary directory is emptied after leaving the page.
+
+**Kind**: static constant of [<code>file</code>](#module_file)  
+<a name="module_file.copy"></a>
+
+### file.copy(source, target, [options]) ⇒ <code>boolean</code>
+Copies a file.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>boolean</code> - True on success, false otherwise  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>source</td><td><code>*</code></td><td></td><td><p>File to copy</p>
+</td>
+    </tr><tr>
+    <td>target</td><td><code>*</code></td><td></td><td><p>Target directory or the new name</p>
+</td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place. Applies to both source and target parameters.</p>
+</td>
+    </tr><tr>
+    <td>[options.replace]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If true, any existing file of the same name will be replaced.
+  If false, the operation will not continue if the file already exists.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.exists"></a>
+
+### file.exists(filename, [options]) ⇒ <code>boolean</code>
+Does a file or directory exist in the virtual filesystem?
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>boolean</code> - True if the file/directory exists, false otherwise  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>filename</td><td><code>string</code></td><td></td><td></td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.getFS"></a>
+
+### file.getFS() ⇒ <code>object</code> \| <code>null</code>
+Returns the BrowserFS object for direct access to the BrowserFS API.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>object</code> \| <code>null</code> - The FS object or null if the filesystem hasn't been initialized yet  
+<a name="module_file.info"></a>
+
+### file.info(filename, [options]) ⇒ <code>object</code> \| <code>null</code>
+Returns an object with information about a file or directory:
+
+```
+{
+  contents: string | Array<string>,   // Contents of text file, or files inside the directory
+  directory: string,                  // Parent directory
+  header: null | {                    // Inform 7 header, or null if doesn't exist/apply
+    project: string,                  // Project name in the header
+    ready: boolean                    // File's ready status
+  },
+  name: string,                       // Base filename or directory name
+  isDirectory: boolean,               // True if it's a directory, false if it's a normal file
+  path: string                        // Full path to the file
+}
+```
+
+Returns null if the file or directory doesn't exist.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>filename</td><td><code>string</code></td><td></td><td></td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.informHeader"></a>
+
+### file.informHeader(project, filename, [ready]) ⇒ <code>string</code>
+Creates a header for Inform 7 files. If the story is Inform 6, returns an empty string.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>string</code> - Inform 7 header or an empty string for Inform 6  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>project</td><td><code>string</code></td><td></td><td><p>Project&#39;s name</p>
+</td>
+    </tr><tr>
+    <td>filename</td><td><code>string</code></td><td></td><td><p>Filename, path is automatically removed</p>
+</td>
+    </tr><tr>
+    <td>[ready]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If true, the file is marked &quot;ready&quot; for Inform 7</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.init"></a>
+
+### file.init() ⇒ <code>Promise.&lt;object&gt;</code>
+Initialize the filesystem. This gets called automatically when calling
+vorple.init() but it can be called manually before that to get access
+to the filesystem earlier.
+
+The method returns a promise that resolves into the BrowserJS filesystem
+object, but after the promise has resolved all vorple.file.* are also
+available.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>Promise.&lt;object&gt;</code> - A promise that resolves to the filesystem object  
+**Example**  
+```js
+async function getAccessToFS() {
+  const fs = await vorple.file.init();
+  
+  // fs is now the BrowserFS filesystem object (what you'd get from vorple.file.getFS())
+  // also all vorple.file.* methods are now available
+  vorple.file.write("info.txt", "Filesystem is now available");
+}
+```
+<a name="module_file.isReady"></a>
+
+### file.isReady(filename, [options]) ⇒ <code>boolean</code>
+Check if a file has been marked ready for Inform 7 to read.
+
+If the file doesn't exist, it doesn't have a header, or it can't be read,
+the method returns false. Error conditions must be checked manually if
+it's important to make a difference between invalid operation and a file
+that has been marked not ready.
+
+This method always returns false on Inform 6.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>boolean</code> - True if file is ready, false on error or not ready  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>filename</td><td><code>string</code></td><td></td><td></td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.markReady"></a>
+
+### file.markReady(filename, [ready], [options]) ⇒ <code>boolean</code>
+Marks a file ready to read (or not ready to read) for Inform 7.
+This is equivalent of the phrases "mark (external file) as ready to read"
+and "mark (external file) as not ready to read" in Inform 7.
+
+If the file doesn't have an Inform 7 header the method does nothing and returns false.
+
+In Inform 6 this method does nothing and always returns false.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>boolean</code> - True if operation was successful, false otherwise.
+ Returns true even if no change was made to the file (was already marked ready.)  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>filename</td><td><code>string</code></td><td></td><td></td>
+    </tr><tr>
+    <td>[ready]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If true, marks the file ready. Otherwise marks the file not ready.</p>
+</td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.mkdir"></a>
+
+### file.mkdir(dirname, [options]) ⇒ <code>boolean</code>
+Create a new directory in the virtual filesystem. 
+
+This does not create missing subdirectories, e.g. mkdir( 'foo/bar' ) won't work
+if directory 'foo' doesn't exist.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>boolean</code> - True if directory was created, false otherwise  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>dirname</td><td><code>string</code></td><td></td><td></td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.move"></a>
+
+### file.move(source, target, [options]) ⇒ <code>boolean</code>
+Moves a file or directory to another directory.
+If the target doesn't exist, the file or directory is renamed.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>boolean</code> - True on success, false otherwise  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>source</td><td><code>*</code></td><td></td><td><p>File/directory to move</p>
+</td>
+    </tr><tr>
+    <td>target</td><td><code>*</code></td><td></td><td><p>Target directory or the new name</p>
+</td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place. Applies to both source and target parameters.</p>
+</td>
+    </tr><tr>
+    <td>[options.replace]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If true, any existing file of the same name will be replaced.
+  If false, the operation will not continue if the file already exists.
+  This option is ignored if the source is a directory (a directory will never overwrite a file.)</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.path"></a>
+
+### file.path(filename, path)
+Adds a path to a given filename.
+See https://nodejs.org/api/path.html#path_path_resolve_paths
+for rules on how path joining works.
+
+The default root directory is /inform so
+`vorple.file.path( "foo.txt", "bar" )` will resolve to
+`/inform/bar/foo.txt`.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>filename</td><td><code>string</code></td>
+    </tr><tr>
+    <td>path</td><td><code>string</code></td>
+    </tr>  </tbody>
+</table>
+
+**Example**  
+```js
+vorple.file.path( "foo.txt" );                   // --> /inform/foo.txt
+vorple.file.path( "foo.txt", "bar" );            // --> /inform/bar/foo.txt
+vorple.file.path( "foo.txt", "/bar" );           // --> /bar/foo.txt
+vorple.file.path( "../foo.txt", "/bar/xyz" );    // --> /bar/foo.txt
+vorple.file.path( "foo.txt", "/" );              // --> /foo.txt
+vorple.file.path( "/foo.txt", "/bar/xyz" );      // --> /foo.txt
+```
+<a name="module_file.read"></a>
+
+### file.read(filename, [options]) ⇒ <code>string</code> \| <code>null</code>
+Read a text file from the virtual filesystem
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>string</code> \| <code>null</code> - The contents of the file, or null file could not be read  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>filename</td><td><code>string</code></td><td></td><td></td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.binary]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>Is it a binary file?</p>
+</td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place</p>
+</td>
+    </tr><tr>
+    <td>[options.header]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If true, return value contains the Inform 7 header if present. Otherwise the header is not included in the return value.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.readdir"></a>
+
+### file.readdir(dirname, [options]) ⇒ <code>array</code> \| <code>null</code>
+Returns the contents of a directory. Returns null if the directory doesn't exist
+or the directory is actually a file.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>array</code> \| <code>null</code> - The list of files in the directory, or null on error  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>dirname</td><td><code>string</code></td><td></td><td></td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.rmdir"></a>
+
+### file.rmdir(dirname, [options]) ⇒ <code>boolean</code>
+Remove a directory from the virtual filesystem. Directory must be empty.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>boolean</code> - True if directory was removed, false otherwise  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>dirname</td><td><code>string</code></td><td></td><td></td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.unlink"></a>
+
+### file.unlink(filename, [options]) ⇒ <code>boolean</code>
+Unlink (i.e. delete) a file from the virtual filesystem.
+Use rmdir() to remove directories.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>boolean</code> - True if file was removed, false otherwise  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>filename</td><td><code>string</code></td><td></td><td></td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_file.write"></a>
+
+### file.write(filename, contents, [options]) ⇒ <code>boolean</code>
+Write a file to the virtual filesystem.
+
+**Kind**: static method of [<code>file</code>](#module_file)  
+**Returns**: <code>boolean</code> - True on success, false otherwise  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Default</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>filename</td><td><code>string</code></td><td></td><td></td>
+    </tr><tr>
+    <td>contents</td><td><code>string</code> | <code>array</code></td><td></td><td><p>Contents of what to write to the file, either a string or a byte array</p>
+</td>
+    </tr><tr>
+    <td>[options]</td><td><code>object</code></td><td><code>{}</code></td><td></td>
+    </tr><tr>
+    <td>[options.append]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If true, contents are appended to the file, otherwise the file is overwritten with the new content</p>
+</td>
+    </tr><tr>
+    <td>[options.binary]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If true, writes a binary file instead of a text file</p>
+</td>
+    </tr><tr>
+    <td>[options.cwd]</td><td><code>string</code></td><td><code>&quot;/inform&quot;</code></td><td><p>The directory where the operation takes place</p>
+</td>
+    </tr><tr>
+    <td>[options.header]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If true, an Inform 7 header is added to the start of the file. On Inform 6 this option does nothing.</p>
+</td>
+    </tr><tr>
+    <td>[options.project]</td><td><code>string</code></td><td><code>&quot;VORPLE&quot;</code></td><td><p>The project name that&#39;s used in the Inform 7 header.
+ Does nothing on Inform 6 or if <code>options.header</code> is false.</p>
+</td>
+    </tr><tr>
+    <td>[options.ready]</td><td><code>boolean</code></td><td><code>true</code></td><td><p>If true, the header gets a &quot;ready&quot; mark (<code>*</code>) to signal Inform 7 that the file can be read.
+ Otherwise the header is marked not ready (<code>-</code>).
+ Does nothing on Inform 6 or if <code>options.header</code> is false.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+
+<hr>
 <a name="module_layout"></a>
 
 ## layout
@@ -444,12 +982,14 @@ Unblock the UI.
         * [.hide()](#module_prompt.hide)
         * [.init()](#module_prompt.init)
         * [.queueCommand(cmd, [silent])](#module_prompt.queueCommand)
+        * [.queueKeypress(key)](#module_prompt.queueKeypress)
         * [.setPrefix(prefix, [html])](#module_prompt.setPrefix) ⇒ <code>string</code>
         * [.setValue(value)](#module_prompt.setValue)
         * [.submit([silent])](#module_prompt.submit)
         * [.unhide()](#module_prompt.unhide)
     * _inner_
         * [~runCommandQueue()](#module_prompt..runCommandQueue)
+        * [~runKeyQueue()](#module_prompt..runKeyQueue)
 
 <a name="module_prompt.hide"></a>
 
@@ -460,7 +1000,7 @@ Manually hide the prompt. It won't be shown until unhide() is called.
 <a name="module_prompt.init"></a>
 
 ### prompt.init()
-Hook into the lineinput's ready event for passing commands from the queue.
+Hook into Haven's input listeners
 
 **Kind**: static method of [<code>prompt</code>](#module_prompt)  
 <a name="module_prompt.queueCommand"></a>
@@ -482,6 +1022,26 @@ the command immediately.
     </tr><tr>
     <td>[silent]</td><td><code>boolean</code></td><td><code>false</code></td><td><p>If true, the command isn&#39;t shown on the
      screen. The result of the command will still print normally.</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_prompt.queueKeypress"></a>
+
+### prompt.queueKeypress(key)
+Add a keypress to the command queue. If the engine is waiting for a keypress,
+send it immediately.
+
+**Kind**: static method of [<code>prompt</code>](#module_prompt)  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>key</td><td><code>string</code></td><td><p>A one-character string containing the pressed character</p>
 </td>
     </tr>  </tbody>
 </table>
@@ -567,6 +1127,13 @@ If there is a command waiting in the queue, submit it to the parser.
 The command is then removed from the queue.
 
 **Kind**: inner method of [<code>prompt</code>](#module_prompt)  
+<a name="module_prompt..runKeyQueue"></a>
+
+### prompt~runKeyQueue()
+If there is a keypress waiting in the queue, send it to the parser.
+The key is then removed from the queue.
+
+**Kind**: inner method of [<code>prompt</code>](#module_prompt)  
 
 <hr>
 <a name="module_vorple"></a>
@@ -574,19 +1141,41 @@ The command is then removed from the queue.
 ## vorple
 
 * [vorple](#module_vorple)
-    * [.fileClosed(filename)](#module_vorple.fileClosed)
-        * [~safe_stringify()](#module_vorple.fileClosed..safe_stringify)
+    * [.addEventListener(eventNames, listener)](#module_vorple.addEventListener) ⇒ <code>function</code>
+    * [.evaluate(filename)](#module_vorple.evaluate)
+    * [.getInformVersion()](#module_vorple.getInformVersion) ⇒ <code>number</code> \| <code>undefined</code>
     * [.init()](#module_vorple.init)
+    * [.removeEventListener([eventNames], listener)](#module_vorple.removeEventListener) ⇒ <code>boolean</code>
     * [.requireVersion(requiredVersion, [callback])](#module_vorple.requireVersion) ⇒ <code>boolean</code>
 
-<a name="module_vorple.fileClosed"></a>
+<a name="module_vorple.addEventListener"></a>
 
-### vorple.fileClosed(filename)
-The story file has closed a file. If it's a handshake file, initiate
-handshake. If it's the eval file, evaluate the JavaScript it contains.
+### vorple.addEventListener(eventNames, listener) ⇒ <code>function</code>
+Registers a listener for an event. See "Filters and event listeners" in the documentation for details.
 
-This method is called by the interpreter engine and is unlikely to be useful
-for other purposes.
+**Kind**: static method of [<code>vorple</code>](#module_vorple)  
+**Returns**: <code>function</code> - A function that can be called to remove the events  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>eventNames</td><td><code>string</code> | <code>Array.&lt;string&gt;</code></td><td><p>The event name or an array of event names where to add the listener</p>
+</td>
+    </tr><tr>
+    <td>listener</td><td><code>function</code></td><td><p>The listener to register</p>
+</td>
+    </tr>  </tbody>
+</table>
+
+<a name="module_vorple.evaluate"></a>
+
+### vorple.evaluate(filename)
+Evaluates JavaScript code and writes the return value and its type to the
+virtual filesystem for the story file to read.
 
 **Kind**: static method of [<code>vorple</code>](#module_vorple)  
 <table>
@@ -601,18 +1190,45 @@ for other purposes.
     </tr>  </tbody>
 </table>
 
-<a name="module_vorple.fileClosed..safe_stringify"></a>
+<a name="module_vorple.getInformVersion"></a>
 
-#### fileClosed~safe\_stringify()
-Stringify a value, or return null if the value can't be stringified
+### vorple.getInformVersion() ⇒ <code>number</code> \| <code>undefined</code>
+Returns the Inform version, detected at handshake.
+Before the handshake the value is undefined.
 
-**Kind**: inner method of [<code>fileClosed</code>](#module_vorple.fileClosed)  
+**Kind**: static method of [<code>vorple</code>](#module_vorple)  
+**Returns**: <code>number</code> \| <code>undefined</code> - 6 or 7  
 <a name="module_vorple.init"></a>
 
 ### vorple.init()
 Initializes and starts Vorple.
 
 **Kind**: static method of [<code>vorple</code>](#module_vorple)  
+<a name="module_vorple.removeEventListener"></a>
+
+### vorple.removeEventListener([eventNames], listener) ⇒ <code>boolean</code>
+Removes a registered event listener.
+
+**Kind**: static method of [<code>vorple</code>](#module_vorple)  
+**Returns**: <code>boolean</code> - True if the listener was removed from at least one event  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>[eventNames]</td><td><code>string</code> | <code>Array.&lt;string&gt;</code></td><td><p>The event name or an array of event names from where to remove the listener.
+Leaving this parameter out completely (i.e. passing the listener function as the first and only parameter)
+removes the listener from all events where it&#39;s been registered.</p>
+</td>
+    </tr><tr>
+    <td>listener</td><td><code>function</code></td><td><p>The listener to remove</p>
+</td>
+    </tr>  </tbody>
+</table>
+
 <a name="module_vorple.requireVersion"></a>
 
 ### vorple.requireVersion(requiredVersion, [callback]) ⇒ <code>boolean</code>

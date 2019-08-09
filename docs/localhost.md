@@ -26,6 +26,9 @@ installing the server on different operating systems.
   (The message says that further configuration is needed but for us the
   default configuration is good enough.) The server will keep running until you 
   reboot the computer, after which you'll have to run nginx.exe again.
+
+For step-by-step Windows instructions and advice on some common pitfalls, see
+[this thread on Intfiction.org](https://intfiction.org/t/this-is-dumb-but-how-do-i-install-vorple/42072/2).
   
 
 ## macOS

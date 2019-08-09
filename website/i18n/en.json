@@ -20,6 +20,9 @@
       "filesystem": {
         "title": "The virtual filesystem"
       },
+      "filters": {
+        "title": "Input and output filters"
+      },
       "glulx-compatibility": {
         "title": "Compatibility with other interpreters"
       },
@@ -46,6 +49,9 @@
       },
       "js-eval": {
         "title": "Executing JavaScript code"
+      },
+      "listeners": {
+        "title": "Event listeners"
       },
       "localhost": {
         "title": "Setting up a local server for Vorple",

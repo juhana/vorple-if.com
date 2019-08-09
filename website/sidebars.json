@@ -20,6 +20,8 @@
       "js-eval",
       "css",
       "ui-state",
+      "listeners",
+      "filters",
       "filesystem"
     ]
   }

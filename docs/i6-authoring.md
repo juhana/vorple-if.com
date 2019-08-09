@@ -3,7 +3,7 @@ id: i6-authoring
 title: Authoring with Vorple in Inform 6
 ---
 
-After [downloading the extensions](/download.html), you can start using them! The rule is simple:
+After [downloading the extensions](/download), you can start using them! The rule is simple:
 you need to include Vorple twice: once before including the parser, and once
 after including the verblib. (Those are usually defined together anyway.) Don't
 worry, Vorple will handle everything correctly; it's just that some things need
@@ -58,7 +58,7 @@ interpreter, it likely won't support Vorple — but it won't crash, and your
 game will still be playable. However, we have a web interpreter
 that will run the Vorple effects correctly!
 
-In the [download package](download.md) there is a file called "play.html".
+In the [download package](/download) there is a file called "play.html".
 If you edit the file you should see a line that looks like like
  
 ```js
