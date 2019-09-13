@@ -47,7 +47,7 @@ vorple/
 ```
 
 The *extended* directory has more space available and stores transcripts and save games. 
-See the next chapter for details.
+See the next section for details.
 
 The *inform* directory is what contains the files Inform handles. When we say for example...
 
@@ -64,7 +64,7 @@ The `vorple.file.*` methods default to using */inform* as the current working di
 which is equivalent to `vorple.file.read("foo", { cwd: "/inform" })`.
 
 The *tmp* directory is for short-lived, temporary files. It's a memory store so it
-will be cleared automatically when the page is closed.
+will be cleared automatically when the page is closed or reloaded.
 
 The files in the *vorple* directory are used by Vorple to tell the Inform story that it's
 running in the Vorple interpreter (VpHndshk), pass JavaScript code from Inform to the
@@ -77,8 +77,8 @@ will always return the same standard response, regardless of the file's actual c
 By getting different contents than what it just wrote to the file is what allows Inform
 to determine that it's running on the Vorple interpreter.
 
-> To avoid name clashes, it's recommended to create a new uniquely named directory to store
-> your files if possible (files read by Inform must be in the *inform* directory.)
+> To avoid name clashes, it's recommended to create your own uniquely named directory to store
+> your files if possible (although files read by Inform must be in the *inform* directory.)
 
 
 ### The *extended* directory
@@ -160,8 +160,8 @@ The file of Best Recipes (owned by project "VORPLE") is called "recipes".
 > Inform 7 has a strict policy when it comes to filenames: The file must be
 > between 3 and 23 letters a-z or numbers, start with a letter, and may not
 > contain special characters or punctuation (which also means no file extensions
-> allowed.) Vorple can create any valid filename that doesn't conform to Inform's
-> restrictions, but those files can't then be read from Inform.
+> allowed.) Vorple can create files with any valid (Unix) names, but if they
+> don't conform to Inform's requirements, they can't then be read from Inform.
 
 Vorple detects whether it's running an Inform 6 or 7 game and automatically adds the
 correct header to Inform 7 files when using `vorple.file.write()` and doesn't include
@@ -232,7 +232,7 @@ The newsstand is a room. The stack of newspapers is here.
 The description of the stack of newspapers is "The headlines proclaim '[text of the file of news headlines]'".
 ```
 
-This might seem unnecessary, but one benefit to this approach is that if the
+This might seem pointless, but one benefit to this approach is that if the
 data is coming from another source via Ajax request, we can fetch it beforehand
 and it's available for the player immediately without having to wait for it to
 load.
@@ -246,7 +246,7 @@ comes in, which would be a lot more cumbersome.
 ## Other considerations
 
 * For simplicity's sake, Vorple's filesystem methods return just true or false to
-  indicate if the operation succeeded or failed. If the actual reason for the
+  indicate if the operation succeeded or failed. If the specific reason for the
   failure is required, the BrowserFS methods can be used instead and they will
   throw an error that contains more details.
 * The filesystem is not immediately available when the page loads. It's possible

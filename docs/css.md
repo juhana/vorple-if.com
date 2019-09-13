@@ -38,14 +38,16 @@ but it looks about the same in all browsers.
 In the lower left panel we see the current HTML structure of the page with the 
 element we right-clicked highlighted. On the lower right panel are the CSS 
 rules that currently apply to it. The element has a class called "font-bold" so 
-to turn that element (and all similar elements) to for example italic type, 
-we'd write a rule:
+if we wanted to have all bold text to also have yellow background color we'd
+write:
 
 ```css
 .font-bold {
-	font-style: italic;
+	background-color: yellow;
 }
-```  
+```
+
+The dot `.` before the name in CSS signifies a class name.  
 
 
 ## Including stylesheets in an Inform project
@@ -105,12 +107,10 @@ If we wanted to print that text in bold font and dark red color, we could add th
 	font-weight: bold;
 	color: #661111;
 }
-``` 
+```
 
 (#661111 is the [RGB hex color code](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) 
 for a dark shade of red.)
-
-The dot `.` before the name in CSS signifies a class name.  
 
 
 ## Responsive design
@@ -122,7 +122,7 @@ A key technology to accomplish this is
 [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries)
 which can enable and disable CSS rules depending on the screen properties.
 
-Again, this is a too broad topic to comprehensively go through here, but the
+Again, this topic is too broad to comprehensively go through here, but the
 basic idea is to wrap CSS rules into `@media` directives that determine when
 to apply those rules. Here we'll make Vorple's font size smaller when the
 screen is very small:
@@ -140,4 +140,4 @@ which hide elements when the screen width is smaller or larger than 568 pixels.
 `sm-only` hides the element when the screen width is 569 pixels or wider, 
 `lg-only` does that when the screen is 568 pixels or narrower. These classes
 are used in the Status Line extension to swap between the mobile status line
-and the "normal" status line.
+and the full status line.

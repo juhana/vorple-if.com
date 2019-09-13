@@ -3,8 +3,6 @@ id: listeners
 title: Event listeners
 ---
 
-## Event listeners
-
 Event listeners are custom JavaScript functions that are called whenever a
 certain event happens. They can be used to hook into interpreter-level actions
 (waiting for input, starting and ending the game.)
@@ -19,14 +17,14 @@ The following events can be listened to:
 * `expectCommand`: triggers after the game starts waiting for lineinput from
   the player (command line input)
 * `submitCommand`: triggers after the user has submitted the lineinput and
-  after input filters have run (see later chapters for info about input filters)
-  but before the input has been sent to the Inform game
+  after [input filters](/docs/filters.html) have run, but before the input has
+  been sent to the Inform game
 * `expectKeypress`: triggers after the game starts waiting for a keypress 
   (charinput)
 * `submitKeypress`: triggers after the player has pressed a key in response to
-  the game expecting a keypress and after input filters have run but before the
+  the game expecting a keypress and after input filters have run, but before the
   keypress has been sent to the Inform game
-* `quit`: triggers when the engine ends the game: e.g. the player commanded
+* `quit`: triggers after the engine ends the game, e.g. the player commanded
   QUIT
 
 (The words "before" and "after" in the above list mean "immediately 
@@ -37,12 +35,12 @@ before/after".)
 > expecting a specific key like space bar and rejects all other keys.
 
 The return value of a listener function is ignored, **except** if the listener
-returns a promise. In that case the interpreter is paused until the promise
-resolves. The listener chain waits for the promise as well (the next listener
-won't be called before the previous resolves.)
+returns a JavaScript promise. In that case the interpreter is paused until the 
+promise resolves. The listener chain waits for the promise as well (the next 
+listener won't be called before the previous resolves.)
 
 
-### Adding and removing listeners
+## Adding and removing listeners
 
 The method `vorple.addEventListener()` method is used to add listeners:
 
@@ -91,7 +89,7 @@ If the same function has been registered multiple times, calling
 `vorple.removeEventListener()` will only remove one instance of it at a time.
 
 
-### Listener parameters
+## Listener parameters
 
 When an event happens, the listener functions are called with one parameter
 that's an object that contains information about the event.
@@ -160,9 +158,9 @@ The `submitCommand` receives the following data:
 data except the event type.
 
 
-### Examples
+## Examples
 
-#### Redirection when game ends
+### Redirection when game ends
 
 Normally when the game ends, nothing happens – the interpreter just stops.
 By adding a listener for the quit event we can make it do something like

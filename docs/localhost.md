@@ -15,7 +15,7 @@ installing the server on different operating systems.
   [nginx.org/en/download.html](http://nginx.org/en/download.html). From that 
   page choose the Stable version. The link looks like "nginx/Windows-x.x.x"
   where "x.x.x" is the version number. When writing this the latest version was
-  1.14.0 but new versions are released regularly.
+  1.16.1 but new versions are released regularly.
   
   [![nginx download page](/img/nginx-download.png)](http://nginx.org/en/download.html)
 
@@ -61,7 +61,7 @@ If the `python` command displays a "command not found" error, you need to
 install Python 2 with the distribution's package manager or alternatively try 
 with Python 3:
 
-    python3 -m http.server
+    python3 -m http.server --bind 127.0.0.1 8000
 
 
 ## Setup for Inform 6

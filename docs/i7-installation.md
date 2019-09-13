@@ -54,32 +54,54 @@ a folder called Vorple there, overwrite it with the new one.
 
 ## Troubleshooting
 
-**The Extensions folder is in the project's Materials folder but Inform says it can't find the extensions**
+#### The Extensions folder is in the project's Materials folder but Inform says it can't find the extensions
 
 You probably have an older version of Inform that doesn't support project-specific
 extensions. Vorple requires the latest version of Inform (6M62).
 
 
-**When compiling, Inform reports errors in the Vorple extensions**
+#### When compiling, Inform reports errors in the Vorple extensions
 
 If this happens even in a simple project (only including the Vorple extensions), 
 as above, it's likely that the Inform version is too old. Upgrade to 6M62.
 
 
-**When compiling, Inform reports "... my copy stipulates that it is 'for Z-Machine only'."**
+#### When compiling, Inform reports "... my copy stipulates that it is 'for Z-Machine only'."
 
 Inform is trying to include an old version of a Vorple extension. 
 Make sure that the new extensions are installed correctly.
 
 
-**When compiling, Inform reports "... my copy stipulates that it is 'for Glulx only'."**
+#### When compiling, Inform reports "... my copy stipulates that it is 'for Glulx only'."
 
 The current version of Vorple is compatible with Glulx only. Change the story 
 file format to Glulx in Inform settings.
 
 
-**When releasing, Inform reports "You asked to release along with a copy of the 'Vorple' in-browser interpreter, but this can't handle story files which use the Glulx story file format."**
+#### When releasing, Inform reports "You asked to release along with a copy of the 'Vorple' in-browser interpreter, but this can't handle story files which use the Glulx story file format."
 
 Inform can't find the latest version of the interpreter. Make sure that the
 new interpreter is in the correct place, either in the materials folder or
 in the global template folder.
+
+
+#### When playing the game, the player's command shows on a separate line below the `>` prompt
+
+This happens when trying to play a non-Vorple game in the Vorple interpreter.
+You need to include at least one of the Vorple extensions to set up the
+interpreter correctly.
+
+
+#### The game runs, but it's just plain text with none of the Vorple features working
+
+The game is most likely running on a normal interpreter instead of the Vorple
+interpreter. Rember to include the Vorple interpreter:
+
+```
+Release along with the "Vorple" interpreter.
+```
+
+Also note that the built-in interpreter in the Inform 7 IDE doesn't support any
+Vorple features, so you'll have to use a web browser to test the game.
+Similarly you have to publish the game online instead of distributing only the
+story file, because normal interpreters won't support Vorple features.

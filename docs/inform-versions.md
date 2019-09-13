@@ -21,7 +21,7 @@ for making games in languages other than English.
 
 * Inform 7 can be downloaded from [inform7.com](http://inform7.com).
 A good place to start is the built-in manual,
-[other documentation](http://www.intfiction.org/forum/viewtopic.php?f=7&t=3988)
+[other documentation](https://intfiction.org/t/the-list-of-inform-7-documentation-as-of-19-dec-2011/3311)
 is also available. Inform 7 is the most popular system for parser-based games 
 and easier to get into without programming experience.
 

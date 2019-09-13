@@ -10,10 +10,10 @@ If we want to modify the input or output, we'll use filters.
 
 ## Input filters
 
-Input filters hook into commands that the user types and can potentially change
-them before they reach the interpreter. Some use cases could be for example
-allowing characters that Inform doesn't usually accept as input, or expanding
-the parser in ways that would be impossible or impratical to do with Inform.
+Input filters observe and can potentially change commands that the user types 
+before they reach the interpreter. Some use cases could be for example allowing
+characters that Inform doesn't usually accept as input, or expanding the parser
+in ways that would be impossible or impratical to do with Inform.
 
 If the player input changes after going through filters, Inform receives this
 changed input as if it were what the player typed. There's no way to tell from
@@ -41,21 +41,24 @@ the new command.
 
 All filters trigger for both line input events (player types a command)
 and character input events (game is waiting for a keypress.) See the `meta.type`
-parameter in the next chapter on how to check what the current event is.
+parameter in the next section on how to check what the current event is.
 
-The `vorple.prompt.addInputFilter()` method returns a function that can be
-used directly to unregister the filter by just calling it:
+Input filters can be removed with `vorple.prompt.removeInputFilter()` or
+calling the function that's returned by the  `vorple.prompt.addInputFilter()`
+method:
 
 ```javascript
 const removeFilter = vorple.prompt.addInputFilter( myInputFilter );
 
 // to unregister later:
+vorple.prompt.removeInputFilter( myInputFilter );
+// ...or...
 removeFilter();
 ```
 
-See also the "Adding and removing listeners" chapter in the 
-[Event listeners article](/docs/listeners.html) for general caveats about
-removing filters.
+> See the "Adding and removing listeners" section in the 
+> [Event listeners article](/docs/listeners.html) for general caveats about
+> removing filters.
 
 
 ### Filter parameters
@@ -103,7 +106,7 @@ A filter must return one of the following:
 
 * A string, which will then become the new input
 * Nothing (`undefined`), `null` or `true`, to not apply this filter
-  (don't change the input)
+  (doesn't change the input)
 * `false`, to cancel the input event
 * A promise that resolves to any of the previously described values,
   or rejects to cancel the event
@@ -111,21 +114,22 @@ A filter must return one of the following:
 Canceling the input event by returning `false` will stop the input event and any
 consequent filter functions will not be called. Note that canceling the event
 won't clear the player's command from the prompt, so it must be cleared manually
-with `vorple.prompt.setValue("")` if that's the required behavior. When done 
-inside a filter, this will also change the command in the command history.
+with `vorple.prompt.setValue("")` if that's the required behavior. 
 
 If a filter returns a promise, the entire filter chain pauses to wait for the
 promise to resolve. Rejecting the promise is equivalent to resolving to `false`
 (the input event will be canceled.) Note that the game will get stuck forever if
-the promise doesn't resolve, so make sure to resolve or reject from all possible
+the promise never resolves, so make sure to resolve or reject from all possible
 situations.
 
 Returning nothing, `null` or `true` signifies that this filter should be ignored
-and it won't change the input. The following filters are all equivalent:
+and it won't change the input (but the effect of any previous or following
+filters won't be canceled.) The following filters are all equivalent as they
+won't change the input:
 
 ```javascript
 function returnSameFilter( input ) {
-    return input;   // unchanged input
+    return input;   // returns unchanged input
 }
 
 function nullFilter() {
@@ -146,6 +150,15 @@ function promiseFilter( input ) {
         // continue with unchanged input
         resolve( input );
     })
+}
+
+// same as above, but using an async function
+// https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await
+async function asyncFilter( input ) {
+    // do some asynchronous work here
+
+    // continue with unchanged input
+    return input;
 }
 ```
 
@@ -168,6 +181,10 @@ function confusionFilter( input ) {
     }
 }
 ```
+
+If the command isn't canceled and `vorple.prompt.setValue()` is used to change
+the user's command inside a filter, the command history (accessible within the
+game with up and down arrow keys) will also use the new value.
 
 
 ### Examples
@@ -205,11 +222,12 @@ vorple.prompt.addInputFilter( esperantoFilter );
 
 Now when the player types "eksiĝu", Inform receives it as "eksigxu".
 
-The `.split().join()` "trick" is commonly used to search-and-replace strings in
-JavaScript: it splits the string in parts using the given string as a separator,
-and then joins the parts together with the replacement string in between.
+> The `.split().join()` "trick" is commonly used to search-and-replace strings
+> in JavaScript: it splits the string in parts using the given string as a 
+> separator, and then joins the parts together with the replacement string in
+> between.
 
-The above function can be used to other character substitutions with small
+The above function can be used for other character substitutions with small
 modifications, with the caveat that it makes the next substitution using the
 previous step, which means that some care must be taken not to accidentally
 substitute something that was already substituted earlier.
@@ -321,7 +339,7 @@ output won't be split into even smaller parts.
 ### Adding and removing output filters
 
 The procedure for adding and removing output filters is the same as with 
-[event listeners](/docs/listeners.html) and input filters but with
+input filters and [event listeners](/docs/listeners.html) but with
 `vorple.output.addOutputFilter()` and `vorple.output.removeOutputFilter()`:
 
 ```javascript
@@ -362,13 +380,13 @@ any effect.
 
 ### Return values
 
-If the filter returns a string, the output will be changed to whatever that
-string is.
+If the filter returns:
 
-Returning false will stop any further output filters from running. Any filters
-run previously will still stay in effect.
+* a string, the output will be changed to whatever that string is.
+* `false`, any further output filters will not run. Any filters run previously
+  will still stay in effect.
 
-Returning anything else will not have any effect (the output stays unchanged.)
+Returning anything else won't have any effect (the output stays unchanged.)
 
 
 ### Accessing the HTML output
@@ -380,9 +398,10 @@ JavaScript commands.
 
 The best way to access the final HTML (and potentially change it) is by 
 registering an event listener for the `expectCommand` and `expectKeypress` 
-events. In practice all game turns will end to either of these two events and
-the previous turn's output will be rendered in HTML at that point. The current
-turn is contained in a HTML element that has classes `turn` and `current`.
+events. A stream of text output from Inform always ends in either one of these
+two events or the `quit` event. The previous turn's output will be rendered in
+HTML at that point. The current turn is contained in a HTML element that has
+classes `turn` and `current`.
 
 If the turn has already ended, the previous turn is in an element with class
 `previous` instead of `current`. All other turns have just the class `turn`
@@ -474,9 +493,9 @@ what's on the screen:
 
 ```javascript
 function textListener() {
-    let turnContent = $( ".last-turn" ).text();
+    let turnContent = $( ".turn.current" ).text();
 
-    // turnContent is now the full text of the previous turn
+    // turnContent is now the full text of the turn
 }
 
 vorple.addEventListener( [ "expectCommand", "expectKeypress" ], textListener );
@@ -526,6 +545,6 @@ Inform would do automatically like removing extra spaces before, after or in
 between words, ignoring casing, handling multiple commands in one input
 ("go east then attack troll") and so on.
 
-Therefore if you find that it's possible to do the same thing with or without filters,
-it's generally advisable to do it purely in Inform unless there's a clear and compelling
-reason to use filters.
+Therefore if you find that it's possible to do the same thing with or without
+filters, it's generally advisable to do it purely in Inform unless there's a 
+clear and compelling reason to use filters.
