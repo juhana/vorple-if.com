@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: layout.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: layout.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module layout
+ */
+import { flush } from "../haven/buffer";
+import { container } from "../haven/window";
+
+
+/**
+ * Blocks the UI so that the user can't type anything or click any elements.
+ *
+ * Use layout.unblock to remove the block.
+ */
+export function block() {
+    // prevent keypresses
+    $( document ).on( 'keydown.vorple.uiblock', function( e ) {
+        e.stopImmediatePropagation();
+        return false;
+    } );
+
+    // add an invisible layer that catches clicks
+    $( '&lt;div class="uiblock">' ).on( 'click.vorple.uiblock', function( e ) {
+        e.stopImmediatePropagation();
+        return false;
+    } ).appendTo( 'body' );
+}
+
+
+/**
+ * Close a tag that is currently open.
+ *
+ * Because the tags are added as DOM elements, the tag isn't really "open"
+ * in the sense that it would be missing the closing tag. Instead we jump
+ * out of the tag and set output focus back to its parent element.
+ *
+ * @param {number} [targetWindow=0]
+ * @returns {boolean} True if a tag was open, false if we were already
+ *  at the top window level and nothing was done
+ */
+export function closeTag( targetWindow = 0 ) {
+    const current = container.get( targetWindow );
+
+    if( current.id === 'window0' ) {
+        return false;
+    }
+
+    flush( targetWindow );
+    container.set( current.parentNode, targetWindow );
+
+    return true;
+}
+
+
+/**
+ * Set output focus to an element.
+ *
+ * @param {string|object} targetElement
+ * @param {number} [targetWindow=0]
+ *
+ * @returns {boolean} True if the focus was set successfully, false if the
+ *   element wasn't found
+ */
+export function focus( targetElement, targetWindow = 0 ) {
+    const $target = $( targetElement );
+
+    if( $target.length === 0 ) {
+        return false;
+    }
+
+    flush();
+    container.set( $target.last().get( 0 ), targetWindow );
+
+    return true;
+}
+
+
+/**
+ * Create a new HTML element, append it to the target window, and set the output
+ * focus to the element.
+ *
+ * Example:
+ *  layout.openTag( 'div', 'vorple', 0 )  -->  &lt;div class="vorple">&lt;/div>
+ *
+ * @param {string} tagName  Name of the tag to create
+ * @param {string} classes  Class names to add to the element
+ * @param {number} [targetWindow=0]  The number of the target window
+ *
+ * @see layout.closeTag
+ *
+ * @returns {boolean} True
+ */
+export function openTag( tagName, classes, targetWindow = 0 ) {
+    const elem = document.createElement( tagName );
+    const current = container.get( targetWindow );
+
+    elem.className = classes;
+
+    flush( targetWindow );
+    container.append( elem, current );
+    container.set( elem, targetWindow );
+
+    return true;
+}
+
+
+/**
+ * Scroll an element into view. Scrolling is initiated only if the element
+ * isn't already fully in view or its top position is not in the top
+ * half of the page.
+ *
+ * If the element doesn't exist, the function doesn't do anything.
+ *
+ * @param {string|object} target  The target element
+ * @param {number} [speed=500]  The duration of the scroll animation in milliseconds 
+ *
+ * @returns {promise} A promise that resolves to true when the scroll animation
+ *   ends, or resolves to false if no scrolling was needed (element doesn't
+ *   exist or is already in view.)
+ */
+export function scrollTo( target, speed = 500 ) {
+    const $target = $( target );
+
+    // if the element doesn't exist, do nothing
+    if( $target.length === 0 ) {
+        return Promise.resolve( false );
+    }
+
+    const pagePosition = $( 'body' ).scrollTop();
+    const targetPosition = $target.offset().top;
+    const targetHeight = $target.height();
+    const windowHeight = $( window ).height();
+    const pageBottom = $( document ).height() - windowHeight;
+    const halfway = windowHeight / 2 + pagePosition;
+    const offset = 30;
+
+    // don't scroll if the element is in the top half of the page
+    // and it fits into the page completely
+    if( targetPosition >= pagePosition + offset &amp;&amp; targetPosition &lt;= halfway &amp;&amp;
+        targetPosition + targetHeight &lt;= pagePosition + windowHeight ) {
+        return Promise.resolve( false );
+    }
+
+    return $( 'html, body' ).stop().animate( {
+        scrollTop: Math.min( Math.max( targetPosition - offset, 0 ), pageBottom )
+    }, speed ).promise().then( () => true );
+}
+
+
+/**
+ * Scroll to the end of the document.
+ * 
+ * @param {number} [speed=500]  The duration of the scroll animation in milliseconds
+ * @returns {promise} A promise that resolves when the scroll animation ends
+ */
+export function scrollToEnd( speed = 500 ) {
+    return $( 'html, body' ).stop().animate( {
+        scrollTop: $( document ).height() - $( window ).height()
+    }, speed ).promise();
+}
+
+
+/**
+ * Unblock the UI.
+ *
+ * @see layout.block
+ */
+export function unblock() {
+    $( '.uiblock' ).remove();
+    $( document ).off( 'keydown.vorple.uiblock' );
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-audio.html">audio</a></li><li><a href="module-debug.html">debug</a></li><li><a href="module-file.html">file</a></li><li><a href="module-layout.html">layout</a></li><li><a href="module-output.html">output</a></li><li><a href="module-prompt.html">prompt</a></li><li><a href="module-vorple.html">vorple</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Sep 13 2019 23:04:20 GMT+0300 (Itä-Euroopan kesäaika)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

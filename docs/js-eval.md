@@ -30,7 +30,7 @@ See the main Vorple extension's documentation for details.
 ## Vorple JavaScript API
 
 Vorple exposes a JavaScript API that controls the interpreter and has some 
-helper methods for the official Inform extensions. [The API is here](js-api.md). 
+helper methods for the official Inform extensions. [The API is here](/api). 
 The methods are in a `vorple` namespace, so for example a method called 
 `audio.clearPlaylist()` can be run with `vorple.audio.clearPlaylist()` (except 
 methods that already start with `vorple` like `vorple.init()`). 

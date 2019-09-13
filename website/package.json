@@ -11,18 +11,16 @@
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version",
-    "api": "node scripts/jsdoc.js"
+    "api": "jsdoc ../vorple/src"
   },
   "bugs": {
     "url": "https://github.com/vorple/inform7/issues"
   },
   "homepage": "https://vorple-if.com",
   "repository": "github:vorple/vorple-if.com",
-  "devDependencies": {
-    "docusaurus": "^1.12.0",
-    "jsdoc-to-markdown": "^5.0.0"
-  },
   "dependencies": {
-    "jsdoc": "^3.6.3"
+    "docusaurus": "^1.12.0",
+    "jsdoc": "^3.6.3",
+    "jsdoc-to-markdown": "^5.0.0"
   }
 }

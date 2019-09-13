@@ -44,9 +44,6 @@
       "inform-versions": {
         "title": "Choosing between Inform 6 and Inform 7"
       },
-      "js-api": {
-        "title": "js-api"
-      },
       "js-eval": {
         "title": "Executing JavaScript code"
       },
