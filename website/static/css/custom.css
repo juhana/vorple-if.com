@@ -1,16 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-html, body {
+html, body,
+nav ul li a,
+nav ul li a:active,
+nav ul li a:visited {
     font-family: 'Roboto', sans-serif;
 }
 
-article a {
+section {
+    background-color: transparent;
+    border-bottom: none;
+}
+
+article a,
+article a:visited,
+a.button,
+a.button:visited {
     color: #611;
-    text-decoration: underline #aaa;
 }
 
 article a:hover {
     text-decoration: underline #aaa;
+}
+
+a.button:hover {
+    color: #aaa;
+}
+
+nav {
+    border-left: none;
+    margin-top: 0;
 }
 
 .navigationSlider .slidingNav ul li a {
