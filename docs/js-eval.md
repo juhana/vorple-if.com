@@ -63,7 +63,7 @@ Object createNamespace "" VorpleInterfaceSetup
     if (isVorpleSupported()) {
         VorpleExecuteJavaScriptCommand("myNamespace.jumpCount++; return myNamespace.jumpCount");
         print "You have jumped ";
-        PrintStringOrArray(VorpleWhatNumberWasReturned());
+        print VorpleWhatNumberWasReturned();
         print " times!";
     }
     rtrue;
