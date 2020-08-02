@@ -19,8 +19,8 @@
   "homepage": "https://vorple-if.com",
   "repository": "github:vorple/vorple-if.com",
   "dependencies": {
-    "docusaurus": "^1.12.0",
-    "jsdoc": "^3.6.3",
-    "jsdoc-to-markdown": "^5.0.0"
+    "docusaurus": "1.14.5",
+    "jsdoc": "3.6.5",
+    "jsdoc-to-markdown": "6.0.1"
   }
 }
