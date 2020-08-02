@@ -8,6 +8,9 @@
       "about": {
         "title": "What is Vorple?"
       },
+      "borogove": {
+        "title": "Writing Vorple games online"
+      },
       "code-of-conduct": {
         "title": "Contributor Covenant Code of Conduct"
       },
@@ -31,6 +34,9 @@
       },
       "i6-authoring": {
         "title": "Authoring with Vorple in Inform 6"
+      },
+      "i6-installation": {
+        "title": "Installing Vorple for Inform 6"
       },
       "i7-authoring": {
         "title": "Authoring with Vorple in Inform 7"
@@ -64,6 +70,7 @@
     "links": {
       "Author's Guide": "Author's Guide",
       "JavaScript API": "JavaScript API",
+      "Try Online": "Try Online",
       "Download": "Download",
       "Contribute": "Contribute"
     },

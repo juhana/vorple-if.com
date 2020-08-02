@@ -1,12 +1,13 @@
 {
   "authoring": {
     "Getting started": [
-      "getting-started",
       "about",
       "inform-versions",
+      "borogove",
       "localhost"
     ],
     "Inform 6": [
+      "i6-installation",
       "i6-authoring",
       "i6-api"
     ],

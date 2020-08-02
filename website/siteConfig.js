@@ -10,6 +10,7 @@ const siteConfig = {
     headerLinks: [
         {doc: 'about', label: "Author's Guide"},
         {page: 'api/index', label: 'JavaScript API'},
+        {href: 'https://borogove.app', label: 'Try Online'},
         {page: 'download', label: 'Download'},
         {doc: 'contribute', label: 'Contribute'}
     ],

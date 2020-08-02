@@ -84,6 +84,11 @@ class HomeSplash extends React.Component {
                         <Button href={siteConfig.baseUrl + 'download.html'}>
                             Download
                         </Button>
+                        <Button href="https://borogove.app">
+                            <strong>
+                                Try online
+                            </strong>
+                        </Button>
                     </PromoSection>
                 </div>
             </SplashContainer>
@@ -112,10 +117,14 @@ const Features = props => (
             },
             {
                 content: 'Take advantage of everything that modern web platforms can offer. Style your game with CSS and run JavaScript commands directly from Inform.',
-                // image: imgUrl( 'docusaurus.svg' ),
                 imageAlign: 'top',
                 title: 'Full control of game appearance and behavior',
             },
+            {
+                content: 'Write Vorple games online with Borogove, the online IF development environment.',
+                imageAlign: 'top',
+                title: 'Try it online',
+            }
         ]}
     </Block>
 );

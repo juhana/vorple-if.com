@@ -3,6 +3,8 @@ id: i7-installation
 title: Installing Vorple for Inform 7
 ---
 
+> These instructions are for installing Vorple locally on your own computer. They are not necessary when [writing online with Borogove](borogove.html) — you can skip this article and go directly to [Authoring with Vorple in Inform 7](i7-authoring.html).
+
 ## Quickstart
 
 These steps install Vorple for **one Inform project only**.
