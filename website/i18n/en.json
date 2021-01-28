@@ -53,6 +53,9 @@
       "js-eval": {
         "title": "Executing JavaScript code"
       },
+      "js-library": {
+        "title": "Using Vorple in a JavaScript project"
+      },
       "listeners": {
         "title": "Event listeners"
       },

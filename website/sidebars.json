@@ -23,7 +23,8 @@
       "ui-state",
       "listeners",
       "filters",
-      "filesystem"
+      "filesystem",
+      "js-library"
     ]
   }
 }
