@@ -27,6 +27,11 @@ a.button:hover {
     color: #aaa;
 }
 
+iframe {
+    border: 1px solid lightgray;
+    margin-bottom: 1rem;
+}
+
 nav {
     border-left: none;
     margin-top: 0;

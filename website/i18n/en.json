@@ -20,6 +20,36 @@
       "css": {
         "title": "Styling the game with CSS"
       },
+      "extension-command-prompt-control": {
+        "title": "Command Prompt Control"
+      },
+      "extension-element-manipulation": {
+        "title": "Element Manipulation"
+      },
+      "extension-hyperlinks": {
+        "title": "Hyperlinks"
+      },
+      "extension-modal-windows": {
+        "title": "Modal Windows"
+      },
+      "extension-multimedia": {
+        "title": "Multimedia"
+      },
+      "extension-notifications": {
+        "title": "Notifications"
+      },
+      "extension-screen-effects": {
+        "title": "Screen Effects"
+      },
+      "extension-status-line": {
+        "title": "Status Line"
+      },
+      "extension-tooltips": {
+        "title": "Tooltips"
+      },
+      "extension-vorple": {
+        "title": "The main Vorple extension"
+      },
       "filesystem": {
         "title": "The virtual filesystem"
       },
@@ -81,6 +111,7 @@
       "Getting started": "Getting started",
       "Inform 6": "Inform 6",
       "Inform 7": "Inform 7",
+      "Inform 7 extensions": "Inform 7 extensions",
       "Advanced topics": "Advanced topics"
     }
   },

@@ -15,6 +15,18 @@
       "i7-installation",
       "i7-authoring"
     ],
+    "Inform 7 extensions": [
+      "extension-vorple",
+      "extension-command-prompt-control",
+      "extension-element-manipulation",
+      "extension-hyperlinks",
+      "extension-modal-windows",
+      "extension-multimedia",
+      "extension-notifications",
+      "extension-screen-effects",
+      "extension-status-line",
+      "extension-tooltips"
+    ],
     "Advanced topics": [
       "in-depth",
       "glulx-compatibility",
