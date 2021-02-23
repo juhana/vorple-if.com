@@ -27,7 +27,7 @@ watch the short video below that showcases many of Vorple's features.
 <p>
 
 The game featured in the video is [playable online](https://hlabrande.itch.io/neon-vertex)
-and the Inform 6 source code is in the 
+and the source code for Inform 6 and Inform 7 is in the 
 [Vorple community contributions GitHub repository](https://github.com/vorple/contributions/tree/master/games/neon-vertex).
 
 A more technical introduction to Vorple is in the [Vorple in depth](in-depth.html) article.

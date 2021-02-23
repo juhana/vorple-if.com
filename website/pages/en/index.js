@@ -176,7 +176,9 @@ const Demo = props => (
                         <a href="https://hlabrande.itch.io/neon-vertex">Try the demo online</a>
                     </li>
                     <li>
-                        <a href="https://bitbucket.org/hlabrand/neon-vertex/src/master">Inform 6 source code</a>
+                        Source code for 
+                        <a href="https://github.com/vorple/contributions/tree/master/games/neon-vertex/inform6">Inform 6</a> and
+                        <a href="https://github.com/vorple/contributions/tree/master/games/neon-vertex/inform7">Inform 7</a>
                     </li>
                 </ul>
             </p>
