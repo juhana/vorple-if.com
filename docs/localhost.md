@@ -93,3 +93,4 @@ on Windows or `http://localhost:8000/ProjectName.materials/Release/play.html`
 on Mac or Linux to the address bar but replace "ProjectName.materials" with the 
 actual name of the materials folder.
   
+Once the local server is working, continue to [Installing Vorple for Inform 7](i7-installation.html).
