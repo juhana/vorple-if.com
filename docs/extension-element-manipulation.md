@@ -78,7 +78,9 @@ rename all the elements called "oldName" to "newName";
 
 ## Examples
 
-### Sonnet Carousel - Showing poems one at a time by showing and hiding elements
+### Sonnet Carousel
+
+*Showing poems one at a time by showing and hiding elements*
 
 In the grand tradition of hammering in a nail with a wrecking ball, this example creates a "carousel" of a selection of Shakespeare's sonnets. Everything else is removed, including the command prompt, except two links that show next and previous sonnets. When the links are clicked, the previously shown sonnet is hidden and the next one is show instead.
 

@@ -332,7 +332,7 @@ In the "synchronize clocks" phrase the system time is retrieved by JavaScript an
 
 *Retrieving and displaying data from a third party service*
 
-Here we set up an encyclopedia that can be used to query articles from Wikipedia. The actual querying code is a bit longer so it's placed in an external encyclopedia.js file, which can be downloaded [here](https://vorple-if.com/resources.zip). Put the file in the project's Resources folder to include it with the release.
+Here we set up an encyclopedia that can be used to query articles from Wikipedia. The actual querying code is a bit longer so it's placed in an external encyclopedia.js file, which can be downloaded [here](/resources/javascript/encyclopedia.js). Put the file in the project's Resources folder to include it with the release.
 
 Note that the pause between issuing the lookup command and the encyclopedia text appearing on the screen is caused by the time it takes to send a request to and receive a response from Wikipedia.
 
