@@ -80,6 +80,8 @@ const siteConfig = {
     ogImage: 'img/vorple-gray-300x177.png',
     twitterImage: 'img/vorple-gray-300x177.png',
 
+    separateCss: [ 'static/api' ]
+
     // You may provide arbitrary config keys to be used as needed by your
     // template. For example, if you need your repo's URL...
     //   repoUrl: 'https://github.com/facebook/test-site',

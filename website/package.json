@@ -6,12 +6,12 @@
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
-    "build": "docusaurus-build",
+    "build": "yarn api && docusaurus-build",
     "publish-gh-pages": "docusaurus-publish",
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version",
-    "api": "jsdoc ../vorple/src"
+    "api": "jsdoc --configure ./jsdoc.conf.json -d ./static/api ../../vorple/src/vorple && sed -i '' '5a\\\n\\    <base href=\"/api/\">' ./static/api/index.html"
   },
   "bugs": {
     "url": "https://github.com/vorple/inform7/issues"
@@ -19,8 +19,8 @@
   "homepage": "https://vorple-if.com",
   "repository": "github:vorple/vorple-if.com",
   "dependencies": {
-    "docusaurus": "1.14.6",
-    "jsdoc": "3.6.5",
-    "jsdoc-to-markdown": "6.0.1"
+    "docusaurus": "1.14.7",
+    "jsdoc": "3.6.6",
+    "jsdoc-to-markdown": "7.0.0"
   }
 }
