@@ -115,6 +115,7 @@ Remember that any other JavaScript variables that we need to access from inside 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" type="text/css" href="./node_modules/vorple/lib/css/haven.css">
     <link rel="stylesheet" type="text/css" href="./node_modules/vorple/lib/css/vorple.css">
 </head>
 <body>

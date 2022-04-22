@@ -22,7 +22,7 @@ and deleting files and directories. To get access to more methods, `vorple.file.
 returns the [BrowserFS](https://jvilk.com/browserfs/) object that can be used to
 access the full API. 
 
-The Vorple filesystem methods are documented in the [JavaScript API](js-api.html#file)
+The Vorple filesystem methods are documented in the [JavaScript API](/api/module-file.html)
 and BrowserFS API methods can be found 
 [here](https://jvilk.com/browserfs/1.4.1/classes/_backend_localstorage_.localstoragefilesystem.html). 
 Note that Vorple's methods are slightly different from BrowserFS methods,
@@ -200,7 +200,7 @@ vorple.file.info("recipes");
 ```
 
 The method `vorple.file.markReady()` can be used to toggle a file's ready status 
-(see [the API](js-api.html#file) for details.) The `vorple.file.write()` method
+(see [the JavaScript API](/api/module-file.html) for details.) The `vorple.file.write()` method
 automatically marks the file as ready to read after it has finished.
 
 Inform 6 doesn't have a similar system and can read and write files without any 
@@ -251,7 +251,7 @@ comes in, which would be a lot more cumbersome.
   throw an error that contains more details.
 * The filesystem is not immediately available when the page loads. It's possible
   to call `vorple.file.init()` manually to get access to the filesystem before
-  starting the game, see [the API](js-api.html#file) for details.
+  starting the game, see [the JavaScript API](/api/module-file.html) for details.
 * `vorple.file.read()` and `vorple.file.write()` read and write text files.
   To handle binary files, BrowserFS methods need to be used. Vorple doesn't 
   directly support binary files.
