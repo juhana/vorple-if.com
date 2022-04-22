@@ -1,0 +1,15 @@
+{
+    "entryPoints": [
+        "../../vorple/src/vorple/audio.ts",
+        "../../vorple/src/vorple/debug.ts",
+        "../../vorple/src/vorple/file.ts",
+        "../../vorple/src/vorple/layout.ts",
+        "../../vorple/src/vorple/output.ts",
+        "../../vorple/src/vorple/prompt.ts",
+        "../../vorple/src/vorple/vorple.ts"
+    ],
+    "excludePrivate": true,
+    "out": "./static/api",
+    "readme": "none",
+    "tsconfig": "../../vorple/tsconfig.json"
+}
