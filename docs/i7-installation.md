@@ -59,13 +59,14 @@ a folder called Vorple there, overwrite it with the new one.
 #### The Extensions folder is in the project's Materials folder but Inform says it can't find the extensions
 
 You probably have an older version of Inform that doesn't support project-specific
-extensions. Vorple requires the latest version of Inform (6M62).
+extensions. Vorple requires at least Inform release 6M62 (Vorple 3.2.8) or
+the latest Inform version (Vorple 4.0.0 onwards.)
 
 
 #### When compiling, Inform reports errors in the Vorple extensions
 
 If this happens even in a simple project (only including the Vorple extensions), 
-as above, it's likely that the Inform version is too old. Upgrade to 6M62.
+as above, it's likely that the Inform version is too old. Upgrade to a newer version.
 
 
 #### When compiling, Inform reports "... my copy stipulates that it is 'for Z-Machine only'."
