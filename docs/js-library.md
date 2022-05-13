@@ -19,7 +19,7 @@ npm install vorple
 After installing the package, its JavaScript file needs to be included from the node_modules directory.
 
 ```html
-<script src="./node_modules/vorple/dist/interpreter/vorple.min.js"></script>
+<script src="./node_modules/vorple/web/interpreter/vorple.min.js"></script>
 ```
 
 The CSS file that sets the interpreter styles can be included from the `lib/css` directory:
@@ -127,7 +127,7 @@ Remember that any other JavaScript variables that we need to access from inside 
     </div>
 </main>
 
-<script src="./node_modules/vorple/dist/interpreter/vorple.min.js"></script>
+<script src="./node_modules/vorple/web/interpreter/vorple.min.js"></script>
 <script>
     vorple.options = {
         // URL to the game file
