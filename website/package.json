@@ -20,7 +20,7 @@
   "repository": "github:vorple/vorple-if.com",
   "dependencies": {
     "docusaurus": "1.14.7",
-    "typedoc": "0.22.15",
-    "typescript": "4.6.4"
+    "typedoc": "0.22.18",
+    "typescript": "4.7.4"
   }
 }

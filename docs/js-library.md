@@ -10,7 +10,7 @@ Vorple can also be used as a library and included in a larger JavaScript project
 
 Install the package from npm:
 
-```
+```bash
 npm install vorple
 ```
 
