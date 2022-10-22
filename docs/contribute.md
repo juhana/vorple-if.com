@@ -9,8 +9,6 @@ The source code is divided into the following repositories:
 
 * **[vorple](https://github.com/vorple/vorple)**: the main JavaScript library
 * **[haven](https://github.com/vorple/haven)**: the interpreter engine layer
-* **[Git](https://github.com/vorple/Git)**: a fork of the Git interpreter for [Emscripten](http://emscripten.org) compilation from C to JavaScript
-* **[cheapglk](https://github.com/vorple/cheapglk)**: a fork of the cheapglk API with Vorple bindings
 * **[inform6](https://github.com/vorple/inform6)**: the Inform 6 library
 * **[inform7](https://github.com/vorple/inform7)**: the Inform 7 extensions and templates
 * **[contributions](https://github.com/vorple/contributions)**: unofficial contributions from the community
