@@ -8,7 +8,7 @@ The Vorple source code is available at [GitHub](https://github.com/vorple).
 The source code is divided into the following repositories:
 
 * **[vorple](https://github.com/vorple/vorple)**: the main JavaScript library
-* **[haven](https://github.com/vorple/vorple)**: the interpreter engine layer
+* **[haven](https://github.com/vorple/haven)**: the interpreter engine layer
 * **[Git](https://github.com/vorple/Git)**: a fork of the Git interpreter for [Emscripten](http://emscripten.org) compilation from C to JavaScript
 * **[cheapglk](https://github.com/vorple/cheapglk)**: a fork of the cheapglk API with Vorple bindings
 * **[inform6](https://github.com/vorple/inform6)**: the Inform 6 library
