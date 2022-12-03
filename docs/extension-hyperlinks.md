@@ -104,4 +104,4 @@ A commonly used technique in modern hypertext IF is to make a linked text cycle 
 
 Here we do the same thing by making links in character descriptions trigger a hidden command that changes the property called appearance and then changing the link to reflect the new property. The phrase that changes the link (`display text...`) is from the core Vorple extension.
 
-<iframe width="780" height="450" src="https://embedded-snippet.borogove.app/?id=kcxfj8"></iframe>
+<iframe width="780" height="450" src="https://embedded-snippet.borogove.app/?id=tntk87"></iframe>
